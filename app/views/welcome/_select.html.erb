@@ -1,0 +1,17 @@
+<%content_for :head do %>
+  <%=stylesheet_link_tag 'about',:media=>'all' %>
+  <%#*<script type="text/javascript">%>
+    <%#*$(function(){%>
+      <%#*$("#overview").click(function(){%>
+       <%#*$("#overview").attr("style","color:#000000")%>
+      <%#*});%>
+    <%#*});%>
+  <%#*</script>%>
+<% end %>
+<%= render :partial => 'header', :locals => { :title => t('about') } %>
+<div id="productheader">
+  <%=link_to "概述(Overview)" ,{:controller=>"welcome",:action=>"overview"},:class=>"distance"%>
+  <%=link_to "功能(Functions)",{:controller=>"welcome",:action=>"function"},:class=> "distance"%>
+  <%=link_to "技术(Technologies)",{:controller=>"welcome",:action=>"technologies"},:class=>"distance" %>
+  <%=link_to "亮点(Highlights)",{:controller=>"welcome",:action=>"highlight"},:class=>"distance" %>
+</div>

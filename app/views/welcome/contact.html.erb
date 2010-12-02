@@ -1,0 +1,27 @@
+<%= render :partial => 'header', :locals => { :title => t('contact') } %>
+
+<div id="doc-wrap">
+  <div id="doc" class="clearfix">
+    <% if @operator.page_contact.blank? %>
+      <h3>客服</h3>
+      <p>QQ：100009870</p>
+      <p>手机：(+86).18757111178</p>
+      <p>邮箱：service@monit.cn</p>
+      <p>电话：(+86)-0571-89719990-808</p>
+      <p>传真:(+86)-0571-89719991</p>
+      <p>邮编：3100013</p>
+      <p>地址：杭州市万塘路69号华星科技苑C座3层</p>
+      <h3>Customer Service</h3>
+      <p>Msn:service@monit.cn</p>
+      <p>Mobile:(+86).18757111178</p>
+      <p>Mail:service@monit.cn</p>
+      <p>Tel:(+86)-0571-89719990-808</p>
+      <p>Fax:(+86)-0571-89719991</p>
+      <p>Zip Code：3100013</p>
+      </p>
+      <p>Address:Block C Level 3,Huaxing Technology Court,NO.69 WanTang Road, Hangzhou</p>
+    <% else %>
+      <%= @operator.page_contact %>
+    <% end %>
+  </div>
+</div>

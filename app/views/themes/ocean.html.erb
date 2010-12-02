@@ -1,0 +1,170 @@
+<% content_for :sidebar do %>
+  <%= board_tag :id => "menu" do %>
+    <%= board_content_tag do %>
+      <div id="menu">
+        <%= menu_tag do |item| %>
+          <%= item.widgets do %>
+            <%= link_to "Widgets", {:menu => 'widgets', :anchor => 'widgets'} %>
+            <%= submenu_tag do |subitem| %>
+              <%= subitem.board link_to("Board", {:menu => 'widgets', :submenu => 'board', :anchor => 'board'}) %>
+              <%= subitem.columns link_to("Columns", {:menu => 'widgets', :submenu => 'columns', :anchor => 'columns'}) %>
+              <%= subitem.tabs link_to("Tabs", {:menu => 'widgets', :submenu => 'tabs', :anchor => 'tabs'}) %>
+              <%= subitem.grid link_to("Grid", {:menu => 'widgets', :submenu => 'grid', :anchor => 'grid'}) %>
+              <%= subitem.datagrid link_to("DataGrid", {:menu => 'widgets', :submenu => 'datagrid', :anchor => 'datagrid'}) %>
+              <%= subitem.form link_to("Form", {:menu => 'widgets', :submenu => 'form', :anchor => 'form'}) %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <%= menu_tag do |item| %>
+          <%= item.sec do %>
+            <%= link_to "About", {:menu => 'about', :anchor => 'about'} %>
+            <%= submenu_tag do |subitem| %>
+              <%= subitem.company link_to("Company", {:menu => 'company', :submenu => 'company', :anchor => 'company'}) %>
+              <%= subitem.author link_to("Author", {:menu => 'about', :submenu => 'author', :anchor => 'author'}) %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<div class="wrap">
+  <h1>Ocean</h1>
+  <div id="widgets">
+
+    <%= board_tag :id => "board" do %>
+      <%= board_header_tag "Board" %>
+      <%= board_content_tag do %>
+        board content
+      <% end %>
+    <% end %>
+
+    <%= board_tag :id => "columns" do %>
+      <%= board_header_tag "Columns" %>
+      <%= board_content_tag do %>
+        <%= tabs_tag :id => "tabs" do |item| %>
+          <%= item.columns2 link_to("Two Columns", {:tab => "columns2", :anchor => "columns2"}) %>
+          <%= item.columns64 link_to("Two columns2", {:tab => "columns64", :anchor => "columns64"}) %>
+          <%= item.columns3 link_to("Three columns", {:tab => "columns3", :anchor => "columns3"}) %>
+        <% end %>
+
+        <%= columns_tag :id => "column2" do %>
+          <%= column_tag do %>
+            Column left
+          <% end %>
+          <%= column_tag :class => "column-last" do %>
+            Column right
+          <% end %>
+        <% end %>
+
+        <%= columns_tag :id => "columns64", :class => "columns64" do %>
+          <%= column_tag do %>
+            Column left
+          <% end %>
+          <%= column_tag :class => "column-last" do %>
+            Column right
+          <% end %>
+        <% end %>
+
+        <%= columns_tag :id => "columns3", :class => "columns3" do %>
+          <%= column_tag do %>
+            Column left
+          <% end %>
+          <%= column_tag do %>
+            Column center
+          <% end %>
+          <%= column_tag :class => "column-last" do %>
+            Column right
+          <% end %>
+        <% end %>
+
+      <% end %>
+    <% end %>
+
+    <%= board_tag :id => "grid" do %>
+      <%= board_header_tag "Grid" %>
+      <%= board_content_tag do %>
+        <% @users = User.paginate(:page => params[:page]) %>
+        <%= form_tag(url_for(:action => "index"), :method => :get) do%>
+          <%= redirect_tag url_for(params) %>
+
+          <%= grid_tag do |g| %>
+            <%= g.head do %>
+              <%= g.h sort_link_to("login", "Login", {:action => "index", :sort => "login" }) %>
+              <%= g.h "Name" %>
+              <%= g.h "Email" %>
+            <% end %>
+            <%= g.foot do %>
+              <%= will_paginate @users %>
+            <% end %>
+            <%= g.body do %>
+              <% @users.each do |user| %>
+                <%= g.r do %>
+                  <%= g.d user.login %>
+                  <%= g.d user.name %>
+                  <%= g.d user.email %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+
+      <% end %>
+    <% end %>
+
+    <%= board_tag :id => "datagrid" do %>
+      <%= board_header_tag "DataGrid" %>
+      <%= board_content_tag do %>
+        <table class="datagrid" cellspacing="0">
+          <thead>
+            <tr>
+              <%= th_tag "name" %>
+              <%= th_tag "email" %>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <%= td_tag user.name %>
+                <%= td_tag user.email %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    <% end %>
+
+    <%= board_tag :id => "form" do %>
+      <%= board_header_tag "Form" %>
+      <%= board_content_tag do %>
+
+        <%= form_for(User.new, :html => {:class => "form"}, :builder => OpenStyle::FormBuilder) do |f| %>
+          <div id="notice">
+            <%= notice_tag :success, "Success message" %>
+            <%= notice_tag :error, "Error message" %>
+            <%= notice_tag :info, "Info message" %>
+          </div>
+          <%= field_set_tag "Common" do %>
+            <%= f.input(:name, :required => true, :help => "Input your name") %>
+            <%= f.item(:email, f.text_field(:email) + f.help(:email, "Input your site email"), :required => true) %>
+            <%#= f.item(:url, :required => true) do %>
+              <%#= f.url_field :url %>
+            <%# end %>
+            <%#= f.item :description do %>
+              <%#= f.text_area :description %>
+              <%#= f.help :description, "More." %>
+            <%# end %>
+            <%= f.input(:updated_at) %>
+          <% end %>
+
+          <p class="form-actions">
+          <%= f.submit 'Update' %>
+          <%#= button_wrap_tag(button_to_function("Cancel", "window.history.go(-1);"), {:hl => true }) %>
+          </p>
+        <% end %>
+
+      <% end %>
+    <% end %>
+  </div>
+</div>

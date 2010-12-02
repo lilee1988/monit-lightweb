@@ -1,0 +1,202 @@
+#doc{
+  background: #F9F9F9 url(images/index_banner_bg.png) repeat-x center top;
+}
+
+#header, #banner, #new, #intro .columns, #header-title, #docm{
+  width: 950px;
+  margin: 0 auto;
+}
+
+#header{
+  padding: 0;
+  background: none;
+  color: gray;
+}
+
+#logo{
+  width: 250px;
+  padding: 10px 0px 0px;
+}
+
+#header a{
+  color: #111111;
+}
+
+#logo a{
+  height: 60px;
+}
+
+#logo a span{
+  font-size: 40px;
+}
+
+#logo a em{
+  color: #888;
+  padding-top: 30px;
+}
+#usernav{
+  padding: 2em 2.5em 0;
+}
+
+#login-button{
+  float: right;
+  margin-top: 1.5em;
+  padding: 4px 7px;
+  background: url(images/index_unused_bg.png) no-repeat;
+}
+
+#login-button a{
+  padding: 0 1.1em 0 .5em;
+}
+
+#banner{
+}
+
+#banner div{
+  float: left;
+  padding: 10px;
+  width: 365px;
+}
+
+#banner h1{
+  font-size: 20px;
+}
+
+#signup-button{
+  margin: 2em 0 0;
+}
+#signup-button span{
+  background: none;
+}
+#signup-button input{
+  font-size: 14px;
+  background: url(images/index_signup_button.png) no-repeat;
+  width: 220px;
+  height: 46px;
+  text-align: left;
+}
+
+#banner p{
+  color: #666666;
+}
+
+#banner #preview{
+  padding: 0;
+  z-index: 2;
+  position: relative;
+  width: 565px;
+  height: 278px;
+}
+
+#new{
+  position: relative;
+}
+
+#new h5{
+  position: relative;
+  width: 156px;
+  float: left;
+  margin:0;
+  line-height: 1.5;
+  margin-top: -17px;
+  font-weight: normal;
+  background: url(images/index_new_title_c.png) repeat-x;
+}
+
+#new h5 span{
+  background: url(images/index_new_title_l.png) no-repeat;
+  display: block;
+  padding: 3px 0;
+}
+
+#new h5 span span{
+  background: none;
+  padding: 5px 0px 5px;
+  text-align: center;
+  border-right: 2px solid #e0e7ec;
+}
+
+#new div{
+  position: relative;
+  width: 794px;
+  background: url(images/index_new_content_c.png) repeat-x;
+  margin-top: -17px;
+  float: left;
+}
+
+#new div span{
+  background: url(images/index_new_content_r.png) no-repeat right center;
+  display: block;
+  padding: 8px 15px 8px;
+}
+
+#intro{
+  margin-top: -17px;
+  background: #849bc2 url(images/index_content_bg.png) repeat;
+  padding: 50px 0;
+}
+
+#intro .column-inner{
+  background: #91a5c8 url(images/index_content_inner_bg.png) repeat;
+  margin: 1px;
+  padding: 2px 10px 2px 60px;
+}
+#intro h4{
+  margin: 1.2em 0 .8em;
+}
+#intro p{
+  color: #fff;
+  height: 80px;
+}
+
+.intro-icon{
+  float: left;
+  width: 50px;
+  height: 50px;
+  margin-left: -50px;
+  margin-top: 15px;
+  background: url(images/index_icons_intro.png) no-repeat -5px -5px;
+}
+
+.icon-cloud{
+  background-position: -5px -5px;
+}
+
+.icon-manager{
+  background-position: -65px -5px;
+}
+
+.icon-business{
+  background-position: -125px -5px;
+}
+.icon-chat{
+  background-position: -5px -65px;
+}
+
+.icon-install{
+  background-position: -65px -65px;
+}
+
+.icon-update{
+  background-position: -125px -65px;
+}
+/**/
+#doc-wrap{
+/*  border-top: 1px solid #849bc2; */
+  border-top: 1px solid #ccc;
+  background: #fff;
+}
+
+#header-title h1{
+  font-size: 20px;
+  float: left;
+  margin: 0;
+  padding: 0.8em 0;
+}
+
+#header-title #signup-button{
+  margin: 0;
+}
+#header-title form{
+  float:right;
+}

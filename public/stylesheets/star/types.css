@@ -1,0 +1,60 @@
+.view-icon .type-Linux{
+  background-position: -200px 0;
+}
+.view-icon .type-Windows{
+  background-position: -600px 0;
+}
+.view-icon .type-MacOSX{
+  background-position: -800px 0;
+}
+.view-icon .type-OpenBSD{
+  background-position: 0 -200px;
+}
+.view-icon .type-FreeBSD{
+  background-position: -200px -200px;
+}
+.view-icon .type-Freespire{
+  background-position: -400px -200px;
+}
+.view-icon .type-Mandriva{
+  background-position: -600px -200px;
+}
+.view-icon .type-Fedora{
+  background-position: -800px -200px;
+}
+
+.view-icon .type-Ubuntu{
+  background-position: 0 -400px;
+}
+.view-icon .type-RedHat{
+  background-position: -200px -400px;
+}
+.view-icon .type-CentOS{
+  background-position: -400px -400px;
+}
+.view-icon .type-Gentoo{
+  background-position: -600px -400px;
+}
+.view-icon .type-Dibian{
+  background-position: -800px -400px;
+}
+/*
+.map .type-host{
+  background: url(images/objects/host.png) no-repeat;
+}
+.map .type-app{
+  background: url(images/objects/app.png) no-repeat;
+}
+.map .type-site{
+  background: url(images/objects/site.png) no-repeat;
+}
+.map .type-firewall{
+  background: url(images/objects/device_firewall.png) no-repeat;
+}
+.map .type-accesspoint{
+  background: url(images/objects/device_accesspoint.png) no-repeat;
+}
+.map .type-switch{
+  background: url(images/objects/device_switch.png) no-repeat;
+}
+*/

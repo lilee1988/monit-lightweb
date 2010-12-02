@@ -1,14 +1,47 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Monit</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<%=I18n.locale%>" lang="<%=I18n.locale%>">
+  <%=render :partial=>'layouts/head'%>
+  <body>
+    <div id="doc">
+      <!--header-->
+      <div id="header" class="clearfix">
+        <h2 id="logo">
+          <%= link_to "Open Style", root_path %>
+        </h2>
+        <div id="usernav">
+          <%= link_to "Settings", "/settings" %>
+          <%= pipe_tag %>
+          <%= link_to "Logout", "/logout" %>
+        </div>
+        <div id="navigation" class="hide">
+          <%= navigation_tag do |nav| %>
+            <%= nav.main(link_to(icon_tag("home") + content_tag(:span, 'Main Page'), {:navigation => 'main', :anchor => 'main'})) %>
+            <%= nav.login(link_to(icon_tag("view") + content_tag(:span, 'Login'), {:navigation => 'login', :anchor => 'login'})) %>
+            <%= nav.signup(link_to(icon_tag("resource") + content_tag(:span, 'Signup'), {:navigation => 'signup', :anchor => 'signup'})) %>
+          <% end %>
+        </div>
+      </div>
+      <div id="header-line">
+      </div>
+      <!--header end-->
+      <div id="content">
+        <div class="wrap">
+          <% if content_for?(:sidebar) %>
+            <div id="wrapper" class="clearfix">
+              <div id="sidebar">
+                <%= yield :sidebar %>
+              </div>
+              <div id="main">
+                <%= yield %>
+              </div>
+            </div>
+          <% else %>
+            <%=yield %>
+          <% end %>
+        </div>
+      </div>
+      <%=render :partial=>'layouts/footer'%>
+    </div>
+  </body>
 </html>

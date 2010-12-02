@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<%=I18n.locale%>" lang="<%=I18n.locale%>">
+  <%content_for :head do %>
+    <%=stylesheet_link_tag 'star/index',:media=>'all' %>
+  <% end %>
+  <%=render :partial=>'layouts/head'%>
+  <body>
+    <div id="doc">
+      <!--header-->
+      <div id="header" class="clearfix">
+        <h2 id="logo">
+          <%= link_to image_tag("index_logo.png") + content_tag(:em, "测试版"), root_path %>
+        </h2>
+        <% if logged_in? %>
+          <div id="usernav">
+            <%=link_to current_user.login, edit_account_path %>
+            <%= pipe_tag %>
+            <%=link_to t("logout"), logout_url %>
+          </div>
+        <% else %>
+          <div id="login-button">
+            <%=link_to t("signup"), remote_signup_url %>
+            <%=link_to t("login"), remote_login_url %>
+          </div>
+          <div id="usernav">
+            <%=link_to '博客', "http://blog.monit.cn/" %>
+            <%#=link_to "反馈", ideas_path %>
+          </div>
+        <% end %>
+      </div>
+      <!--header end-->
+      <%= yield %>
+      <%=render :partial=>'layouts/footer'%>
+    </div>
+    <%=render :partial=>'layouts/analytics'%>
+  </body>
+</html>

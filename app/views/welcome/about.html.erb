@@ -1,0 +1,19 @@
+<%= render :partial => 'header', :locals => { :title => t('about') } %>
+<div id="doc-wrap">
+  <div id="doc" class="clearfix">
+    <% if @operator.page_about.blank? %>
+      <h3>公司简介</h3>
+      <p>杭州华思通信技术有限公司是一家座落于杭州市高新区的高科技通信软件企业，公司致力于研发和提供新一代颠覆性的基于云计算和SaaS商业模式的融合网络管理产品与服务。
+      <%#= link_to "了解更多", "http://www.opengoss.com/?page_id=105" %>
+      </p>
+      <h3>产品服务</h3>
+      <p>公司提供电信综合网管，广电综合网管，企业IT网管，在线托管监控服务等解决方案。公司的WLAN综合网管、EPON综合网管、融合接入网管等产品在国内处于领先地位。
+      </p>
+      <h3>创新技术</h3>
+      <p>我们研发了业界首个基于Erlang技术，按云计算架构研发设计的新一代融合网络管理平台，支持超大规模并发采集、海量数据存储和智能业务分析。领先业界传统网管一代水平。
+      </p>
+    <% else %>
+      <%= @operator.page_about %>
+    <% end %>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
+source 'http://gems.github.com'
 
 gem 'rails', '3.0.3'
 
@@ -6,6 +7,8 @@ gem 'rails', '3.0.3'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
+
+gem 'rubyist-aasm', :require => 'aasm'
 
 gem "will_paginate", "~> 3.0.pre2"
 

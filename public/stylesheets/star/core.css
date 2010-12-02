@@ -1,0 +1,266 @@
+/***********************reset.css********/
+a, img,form {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+body{
+	font-family: arial, helvetica, clean, sans-serif;
+	font-size: 12px; line-height: 1.5;
+	margin: 8px;
+}
+
+/*
+head 头部标题。 不同的浏览器显示h的字体大小和margin不一样，需要格式化
+ */
+h1, h2, h3, h4, h5, h6 {
+	display: block;
+	font-weight: bold;
+	padding: 0;
+	line-height: 1;
+}
+
+h1 {
+	font-size: 2.4em;
+	margin: 0.8em 0;
+}
+
+h2 {
+	font-size: 1.8em;
+	margin: 1em 0;
+}
+
+h3 {
+	font-size: 1.4em;
+	margin: 1.2em 0;
+}
+
+h4 {
+	font-size: 1.2em;
+	margin: 1.6em 0;
+
+}
+
+h5 {
+	font-size: 1em;
+	margin: 2em 0;
+}
+
+h6 {
+	font-size: 0.8em;
+	margin: 2.8em 0;
+}
+
+/*
+list 列表  ul ol dl
+ */
+ul, ol {
+	padding-left: 3em;
+	margin: 1.2em 0;
+}
+
+li {
+	display: list-item;
+}
+
+p, dl {
+	margin: 1.2em 0;
+}
+
+dd {
+	padding-left: 3em;
+}
+
+/*
+form 表单域
+ */
+input, textarea, select {
+	font-family: 'Lucida Grande MS', arial, helvetica, clean, sans-serif;
+	font-size: 100%;
+	/*line-height:inherit !important;*/
+	vertical-align: baseline;
+        margin: 0;/*chrome margin 2px default*/
+}
+
+textarea {
+	overflow-y: auto;
+}
+
+/*
+其它
+ */
+table{
+	font-size:100%;
+}
+sup {
+	vertical-align: text-top;
+}
+
+sub {
+	vertical-align: text-bottom;
+}
+
+pre, code, kbd, samp, tt {
+	font-family: monospace;
+}
+
+hr{ border: 0;
+	border-top: 1px solid gray;
+	height: 0;
+	background: gray;
+}
+/***********************util.css,helper.css********/
+/*
+扩展class 样式
+helper
+ */
+.hide,.hidden{
+	display:none;
+}
+.reset {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	line-height: 1.5;
+	text-decoration: none;
+	font-size: 100%;
+	list-style: none;
+}
+.left{
+	float:left;
+}
+.right{
+	float:right;
+}
+/*
+字体大小控制f1~f6 等同于h1~h6
+ */ 
+.f1 {
+	font-size: 2.4em;
+}
+
+.f2 {
+	font-size: 1.8em;
+}
+
+.f3 {
+	font-size: 1.4em;
+}
+
+.f4 {
+	font-size: 1.2em;
+}
+
+.f5 {
+	font-size: 1em;
+}
+
+.f6 {
+	font-size: 0.8em;
+}
+
+
+/*
+分隔符  <span class="pipe">|</span> <span class="pipe">┊</span>
+ */
+.pipe {
+	padding: 0px 3px;
+}
+
+/*
+让标签内部内容隐藏起来，只显示背景。inline-block元素。
+ */ 
+.icon {
+	overflow: hidden;
+	vertical-align: middle;
+	width: 16px;
+	height: 16px;
+	display: -moz-inline-stack;/*support firefox2*/
+	display: inline-block;
+	font-size: 0;
+	line-height: 9999em;
+}
+a .icon, a .ui-icon{
+	cursor: pointer;
+}
+/*
+clearfix：处理float左右布局。清除浮动
+ */ 
+.clearfix:after{
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+.clearfix{
+	display: inline-block;
+}
+.clearfix{
+	display: block;
+}
+* html .clearfix{
+	height: 1%;
+}
+
+
+
+/*
+无默认样式列表 。ul横向(需要clearfix)，ol纵向。
+ */
+.ul, .ol {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+} 
+.ul li {
+	float: left;
+} 
+.ol li {
+	float: none;
+}
+
+/*
+默认table table-layout: collapse; 会跟随内部内容的增大而增大高宽。
+ */
+.table {
+	table-layout: fixed;
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0pt;
+}
+
+/*error,highlight*/
+.error,.highlight{
+	padding:1em .5em;
+	margin:1.2em 0;
+}
+.error h2,.highlight h2{
+	margin:.1em 0 .4em;
+	font-size: 1.1em;
+}
+.error ul,.highlight ul,.error p,.highlight p{
+	margin:.3em 0;
+}
+.highlight .icon,.highlight .ui-icon,.error .icon,.error .ui-icon{
+	float:left;
+	margin-right:.3em;
+}
+
+.error .errorExplanation{
+	float:left;
+}
+
+/*
+ie处理字体自动换行。
+换行只支持ie。 其他浏览器使内容隐藏
+ */ 
+.wordwrap {
+	overflow: hidden;
+	width: inherit;
+	word-wrap: break-word;
+	word-break: break-all;
+}

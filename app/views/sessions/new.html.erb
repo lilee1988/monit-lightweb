@@ -1,0 +1,41 @@
+<div class="clearfix">
+  <div class="entry-left">
+    <h3>
+      <%=icon_tag("login") %>登录
+    </h3>
+    <div>
+      <% form_for :session, :html => {:class => "form"}, :builder => OpenStyle::FormBuilder, :url => session_path do |f| -%>
+        <% unless @error.blank? %>
+          <p class="notice notice-error">
+          <%= @error %>
+          </p>
+        <% end %>
+        <%= f.item(:email, :label => "邮箱：") do %>
+          <%= f.text_field(:email, :name => "email") %>
+        <% end %>
+        <%= f.item :password, :label => "密码：" do %>
+          <%= f.password_field(:password, :name => "password", :style => "width: 200px;") %>
+          <%#= f.help(link_to "忘记密码？", {:controller => "accounts", :action => "resend_password"}) %>
+        <% end %>
+        <%= f.item :re, :label => raw("&nbsp;") do %>
+          <%= check_box_tag('remember_me', '1', @remember_me) %>
+          <label for="remember_me" class="gray">在这台电脑上记住我，下次自动登录</label>
+        <% end %>
+        <p class="form-actions">
+        <%= f.submit '登录', :hl => true %>
+        </p>
+      <% end -%>
+    </div>
+  </div>
+  <div class="entry-right">
+    <h4>
+      还没有注册？
+    </h4>
+    <div>
+      <p>&nbsp;</p>
+      <% form_tag signup_path, :method => :get do %>
+        <%=button_wrap_tag(submit_tag '点击注册', :name => nil) %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<div id="banner" class="clearfix">
+  <div>
+    <h1><%= t("production_title") %></h1>
+    <p>
+    <%= t("production_title") %>提供对业务(Business)、主机(Host)、网络(Network)、 应用(Application)和服务(Service)的全方位在线监控管理服务。
+    </p>
+    <p>
+    <%= t("production_title") %>为中国政企客户、中小企业主、业务运营商、互联网网站等，提供创新的、简单的、低成本的可用性(Availability)、故障(Fault)与性能(Performance)IT网络监测服务。
+    </p>
+    <%= form_tag remote_signup_url, :method => :get do %>
+      <p id="signup-button">
+      <%= hidden_field_tag "club", "monit" %>
+      <%=button_wrap_tag(submit_tag('新用户注册', :name => nil), :hl => true) %>
+      </p>
+    <% end %>
+  </div>
+  <div id="preview">
+    <%= image_tag "index_preview.jpg", :alt => "预览" %>
+  </div>
+</div>
+<div id="new" class="clearfix">
+  <h5><span><span>最近动态：</span></span></h5>
+  <div><span><%= extlink_to "Monit Cloud 1.3.2版本正式发布", "http://blog.monit.cn/?p=56"%></span></div>
+</div>
+<div id="intro">
+  <div class="columns columns3 clearfix">
+    <div class="column"><div class="column-inner">
+        <em class="intro-icon icon-cloud"></em>
+        <h4>领先的云计算技术</h4>
+        <p><%= t("production_title") %>通过领先的云计算技术, 构建超大规模分布式的在线监测服务平台，用户无需安装维护传统网管软件，就可便捷实现对网络、业务、主机和服务的全方位监控！</p>
+    </div></div>
+    <div class="column"><div class="column-inner">
+        <em class="intro-icon icon-manager"></em>
+        <h4>丰富的管理方式</h4>
+        <p><%= t("production_title") %>提供丰富的管理方式，包括WEB界面，即时通信终端，SMS短信、Email通知，iPhone等智能手机终端。</p>
+    </div></div>
+    <div class="column"><div class="column-inner">
+        <em class="intro-icon icon-business"></em>
+        <h4>直观的业务视图</h4>
+        <p><%=t("production_title")%>提供直观的业务视图，可以一目了然的查看整个业务运行情况，例如由Web服务器、数据库服务器等组成的网站业务。</p>
+    </div></div>
+  </div>
+  <div class="columns columns3 clearfix">
+    <div class="column"><div class="column-inner">
+        <em class="intro-icon icon-chat"></em>
+        <h4>与你的服务器聊天</h4>
+        <p><%=t("production_title")%>通过创新性的即时通信服务，实现管理员与主机的实时通信，开始与你的主机聊天吧！</p>
+    </div></div>
+    <div class="column"><div class="column-inner">
+        <em class="intro-icon icon-install"></em>
+        <h4>简单易用，无需本地部署，极低成本</h4>
+        <p><%=t("production_title")%>通过在线服务模式提供，简单易用无需本地安装维护，按需付费，相比传统网管软件，成本大幅降低。对少于两台服务器的中小网站，永久免费！</p>
+    </div></div>
+    <div class="column"><div class="column-inner">
+        <em class="intro-icon icon-update"></em>
+        <h4>不断升级，持续演进！</h4>
+        <p><%=t("production_title")%>的在线线服务平台，不断升级完善，按客户需求扩展，持续演进直到完美！而传统网管软件，大多一次购买，不再升级，无法满足不断变化的监控需求。</p>
+    </div></div>
+  </div>
+</div>

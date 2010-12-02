@@ -1,0 +1,74 @@
+.usagebars{
+}
+
+.usagebars li{
+  width: 40%;
+}
+
+.usagebars li.first{
+  width: 19.9%;
+}
+
+.usagebars dl{
+  margin: 0 10px;
+  padding:6px 0 8px 0;
+  font-size:12px;
+}
+
+.usagebars dl dt{
+  color:#000;
+  font-size: 20px;
+  font-weight:bold;
+}
+
+.usagebars dl dt em{
+  font-style:normal;
+  color:#999;
+}
+
+.usagebars dl dt span{
+  font-size: 12px;
+  font-style:normal;
+  color: #999999;
+}
+
+.usagebars dl dd{
+  border:2px solid #ddd;
+  margin: 0;
+  padding: 0;
+}
+
+.usagebars li.first dl dd{
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.usagebars li.first dl dd a{
+  font-weight: normal;
+  font-size: 12px;
+}
+
+.usagebars dl dd span{
+  display:block;
+  height:20px;
+  min-width:2px;
+  text-indent:-9999px;
+  background:url(images/usage_bars.gif) 0 0 repeat-x;
+}
+
+.usagebars dl.reaching dd span{
+  background-position:0 -20px;
+}
+
+.usagebars dl.over dd span{
+  background-position:0 -40px;
+}
+
+.usagebars dl.reaching dt em{
+  color:#cd8700;
+}
+
+.usagebars dl.over dt em{
+  color:#c00;
+}

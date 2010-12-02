@@ -1,0 +1,12 @@
+<div id="header-title" class="clearfix">
+  <h1><%= title %></h1>
+  <% unless logged_in? or @display_sign_button %>
+    <% form_tag signup_path, :method => :get do %>
+      <p id="signup-button">
+      <%=button_wrap(submit_tag('新用户注册', :name => nil), :hl => true) %>
+      </p>
+    <% end %>
+  <% end %>
+</div>
+
+

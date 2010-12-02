@@ -1,0 +1,93 @@
+#doc{
+  background:#F9F9F9 url(images/entry_bg.png) repeat-x top;
+}
+
+#header, .entry{
+  width: 885px;
+  margin: 0 auto;
+  padding: 0;
+  background: none;
+}
+#logo{
+  width: 250px;
+  padding: 10px 50px 30px;
+}
+#logo a{
+  height: 60px;
+}
+#header a{
+  color: #111111;
+}
+#logo a em{
+  color: #888;
+  padding-top: 30px;
+}
+
+#logo a span{
+  font-size: 40px;
+}
+
+.entry{
+  background: #fefefe url(images/entry_content_c.png) repeat-y left top;
+  margin-bottom: 60px;
+}
+.entry-t{
+  padding-top: 20px;
+  background: url(images/entry_content_t.png) no-repeat left top;
+}
+.entry-b{
+  background: url(images/entry_content_b.png) no-repeat left bottom;
+  padding: 0 50px 40px;
+}
+.entry-left{
+  float: left;
+  width: 480px;
+}
+.entry-right{
+  float: right;
+  width: 215px;
+}
+.entry-right ul li{
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.entry-right ul{
+  margin-bottom: 3em;
+}
+.entry h3{
+  margin: 0;
+}
+.entry h4{
+  margin: 0 0 20px;
+}
+.entry h3 .icon{
+  width: 20px;
+  height: 20px;
+  margin-right: 6px;
+  margin-top: -5px;
+}
+
+.entry dt{
+  width: 80px;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.entry dd .text-wrap input{
+  width: 300px;
+}
+.form{
+  width: auto;
+}
+
+.form .form-actions{
+  margin-left: 80px;
+}
+
+#resend_password .form-label{
+  width: 130px;
+}
+
+.entry-notice{
+  padding-left: 5em;
+}

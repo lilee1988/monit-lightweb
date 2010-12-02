@@ -1,0 +1,51 @@
+<div class="clearfix">
+  <div class="entry-left">
+    <h3>
+      <%= icon_tag("signup") %>新用户注册
+    </h3>
+    <div>
+      <% @user.password = @user.password_confirmation = nil %>
+      <% form_for @user, :builder => OpenStyle::FormBuilder, :url => register_path, :html => {:class => "form"} do |f| -%>
+        <%= hidden_field_tag :code, params[:code] %>
+        <%#= f.text_field :login, :required => true, :help => "登录账号" %>
+        <%= f.item(:email, :required => true) do %>
+          <%= f.text_field(:email) %>
+          <%= f.help(:email, "登录帐号，收取故障通知") %>
+        <% end %>
+        <%= f.item(:name, :required => true) do %>
+          <%= f.text_field(:name) %>
+          <%= f.help(:name,"") %>
+        <% end %>
+        <%= f.input :password ,:required => true %>
+        <%= f.item :password_confirmation, :required => true do %>
+          <%= f.password_field :password_confirmation %>
+          <%= f.help(:password_confirmation,"") %>
+        <% end %>
+        <%#= f.text_field :mobile, :required=>true %>
+        <%#= f.select :industry,[["请选择行业",""],["计算机/互联网/通信/电子","计算机/互联网/通信/电子"],["会计/金融/银行/保险","会计/金融/银行/保险"],["贸易/消费/制造/营运","贸易/消费/制造/营运"],["专业服务/教育/培训","专业服务/教育/培训"],["政府/非赢利机构/其他","政府/非赢利机构/其他"],["能源/原材料","能源/原材料"],["物流/运输","物流/运输"],["服务业","服务业"]] ,{},{:style=>"width:180px;"}%>
+        <%#= f.text_field :company %>
+        <p class="form-actions">
+        <%= f.submit '注册', :hl => true %>
+        </p>
+      <% end -%>
+    </div>
+  </div>
+  <div class="entry-right">
+    <h4>
+      注册会员后您可以
+    </h4>
+    <ul>
+      <li>实时监控主机服务运行状态</li>
+      <li>及时得到主机服务故障通知</li>
+      <li>统计服务性能合理分配资源</li>
+    </ul>
+    <h4>
+      已有账号？
+    </h4>
+    <div>
+      <% form_tag login_path, :method => :get do %>
+        <%=button_wrap_tag(submit_tag '返回登录', :name => nil) %>
+      <% end %>
+    </div> 
+  </div>
+</div>

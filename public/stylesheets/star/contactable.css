@@ -1,0 +1,44 @@
+#contactable {
+  MARGIN-TOP: 200px; Z-INDEX: 101; LEFT: 0px; BACKGROUND-IMAGE: url(images/feedback_btn.png); MARGIN-LEFT: -1px; OVERFLOW: hidden; WIDTH: 28px; CURSOR: pointer; COLOR: #ffffff; TEXT-INDENT: -100000px; POSITION: fixed; TOP: -10px; HEIGHT: 105px; BACKGROUND-COLOR: #FFFFFF;
+}
+#contactForm {
+  MARGIN-TOP: -60px; PADDING-LEFT: 30px; Z-INDEX: 99; LEFT: 0px; MARGIN-LEFT: -300px; OVERFLOW: hidden; WIDTH: 324px; COLOR: #000000; POSITION: fixed; TOP: 200px; HEIGHT: 384px; BACKGROUND-COLOR: #FFFFFF; background:url(images/feedback_form_bg.png) right top no-repeat; padding-top:35px;
+}
+FORM#contactForm INPUT {
+  BORDER-RIGHT: #dfdfdf 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #dfdfdf 1px solid; PADDING-LEFT: 5px; FONT-SIZE: 1em; BACKGROUND: #ffffff 0px 0px; MARGIN-BOTTOM: 10px; PADDING-BOTTOM: 5px; BORDER-LEFT: #dfdfdf 1px solid; WIDTH: 222px; PADDING-TOP: 5px; BORDER-BOTTOM: #dfdfdf 1px solid; outline-style: none; outline-width: medium; font:bold 14px Tahoma,"\u5b8b\u4f53";
+}
+TEXTAREA {
+  BORDER-RIGHT: #dfdfdf 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #dfdfdf 1px solid; PADDING-LEFT: 5px; FONT-SIZE: 1em; BACKGROUND: #ffffff 0px 0px; MARGIN-BOTTOM: 10px; PADDING-BOTTOM: 5px; BORDER-LEFT: #dfdfdf 1px solid; WIDTH: 222px; PADDING-TOP: 5px; BORDER-BOTTOM: #dfdfdf 1px solid; outline-style: none; outline-width: medium;
+}
+FORM#contactForm input#fsbm {
+  padding: 0;
+  margin: -6px 0 0 0;
+  border: 0;
+  width: 123px;
+  height: 31px;
+  background: transparent url(images/feedback_form_sbm.png) left top no-repeat;
+  cursor: pointer;
+}
+
+FORM#contactForm P {
+  FONT-SIZE: 0.9em; WIDTH: 222px
+}
+#contactForm .red {
+  COLOR: #f5410f
+}
+#overlay {
+  PADDING-RIGHT: 0px; DISPLAY: none; PADDING-LEFT: 0px; LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 100%; PADDING-TOP: 0px; POSITION: absolute; TOP: 0px; HEIGHT: 100%; BACKGROUND-COLOR: #666666
+}
+#contactform .error {
+  BACKGROUND-COLOR: #edbe9c
+}
+#contactform #loading {
+  DISPLAY: none; BACKGROUND: url(images/feedback_ajax-loader.gif) no-repeat; MARGIN: 100px auto; WIDTH: 55px; HEIGHT: 55px
+}
+#callback {
+  DISPLAY: none; FONT-SIZE: 1.1em; MARGIN: 150px auto; WIDTH: 260px; COLOR: #000
+}
+.holder {
+  MARGIN: 0px auto; padding-left:15px;
+}
+

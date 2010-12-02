@@ -1,0 +1,233 @@
+.status-host-up{
+  color: #33FF00;
+}
+.status-host-down{
+  color: #F83838;
+}
+.status-host-unknown {
+  color: #FF9900;
+}
+.status-host-unreachable {
+  color: #CCFF33;
+}
+.status-host-pending {
+  color: #ACACAC;
+}
+.status-device-up{
+  color: #33FF00;
+}
+.status-device-down{
+  color: #F83838;
+}
+.status-device-unknown {
+  color: #FF9900;
+}
+.status-device-unreachable {
+  color: #CCFF33;
+}
+.status-device-pending {
+  color: #ACACAC;
+}
+.status-app-up{
+  color: #33FF00;
+}
+.status-app-down{
+  color: #F83838;
+}
+.status-app-unknown{
+  color: #FF9900;
+}
+
+.status-app-pending {
+  color: #ACACAC;
+}
+
+.status-site-up{
+  color: #33FF00;
+}
+.status-site-down{
+  color: #F83838;
+}
+.status-site-unknown{
+  color: #FF9900;
+}
+
+.status-site-pending {
+  color: #ACACAC;
+}
+
+.status-service-ok{
+  color: #33FF00;
+}
+
+.status-service-warning{
+  color: #CCFF33;
+}
+
+.status-service-critical{
+  color: #F83838;
+}
+
+.status-service-unknown{
+  color: #FF9900;
+}
+
+.status-service-pending {
+  color: #ACACAC;
+}
+
+.status-alert-ok{
+  color: #33FF00;
+}
+
+.status-alert-warning{
+  color: #CCFF33;
+}
+
+.status-alert-critical{
+  color: #F83838;
+}
+
+.status-alert-unknown{
+  color: #FF9900;
+}
+
+
+/*grid*/
+
+/*['available', 'unavailable', 'busy'] */
+td.status-agent-available{
+  background-color: #33FF00;
+  color: #fff;
+}
+td.status-agent-unavailable{
+  background-color: #ACACAC;
+  color: #fff;
+}
+td.status-agent-busy{
+  background-color: #FF9900;
+  color: #fff;
+}
+
+td.status-host-up{
+  background-color: #33FF00;
+  color: #fff;
+}
+td.status-host-down{
+  background-color: #F83838;
+  color: #fff;
+}
+td.status-host-unknown {
+  background-color: #FF9900;
+  color: #fff;
+}
+td.status-host-unreachable {
+  background-color: #CCFF33;
+  color: #fff;
+}
+td.status-host-pending {
+  background-color: #ACACAC;
+  color: #fff;
+}
+
+td.status-device-up{
+  background-color: #33FF00;
+  color: #fff;
+}
+td.status-device-down{
+  background-color: #F83838;
+  color: #fff;
+}
+td.status-device-unknown {
+  background-color: #FF9900;
+  color: #fff;
+}
+td.status-device-unreachable {
+  background-color: #CCFF33;
+  color: #fff;
+}
+td.status-device-pending {
+  background-color: #ACACAC;
+  color: #fff;
+}
+td.status-app-up{
+  background-color: #33FF00;
+  color: #fff;
+}
+td.status-app-down{
+  background-color: #F83838;
+  color: #fff;
+}
+td.status-app-unknown{
+  background-color: #FF9900;
+  color: #fff;
+}
+
+td.status-app-pending {
+  background-color: #ACACAC;
+  color: #fff;
+}
+
+td.status-site-up{
+  background-color: #33FF00;
+  color: #fff;
+}
+td.status-site-down{
+  background-color: #F83838;
+  color: #fff;
+}
+td.status-site-unknown{
+  background-color: #FF9900;
+  color: #fff;
+}
+
+td.status-site-pending {
+  background-color: #ACACAC;
+  color: #fff;
+}
+
+td.status-service-ok{
+  background-color: #33FF00;
+  color: #fff;
+}
+
+td.status-service-warning{
+  background-color: #CCFF33;
+  color: #fff;
+}
+
+td.status-service-critical{
+  background-color: #F83838;
+  color: #fff;
+}
+
+td.status-service-unknown{
+  background-color: #FF9900;
+  color: #fff;
+}
+
+td.status-service-pending {
+  background-color: #ACACAC;
+  color: #fff;
+}
+
+td.status-alert-clear{
+  background-color: #33FF00;
+  color: #fff;
+}
+
+td.status-alert-warning{
+  background-color: #CCFF33;
+  color: #fff;
+}
+
+td.status-alert-critical{
+  background-color: #F83838;
+  color: #fff;
+}
+
+td.status-alert-information{
+  background-color: #FF9900;
+  color: #fff;
+}
+
