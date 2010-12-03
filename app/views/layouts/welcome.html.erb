@@ -14,6 +14,7 @@
         </h2>
         <% if logged_in? %>
           <div id="usernav">
+            <%= link_to "中电云集", "http://www.chinaccnet.com/" %>
             <%#=link_to current_user.login, edit_account_path %>
             <%#= pipe_tag %>
             <%#=link_to t("logout"), logout_url %>
@@ -24,6 +25,7 @@
             <%=link_to t("login"), remote_login_url %>
           </div>
           <div id="usernav">
+            <%= link_to "中电云集", "http://www.chinaccnet.com/" %>
             <%#=link_to '博客', "http://blog.monit.cn/" %>
             <%#=link_to "反馈", ideas_path %>
           </div>
