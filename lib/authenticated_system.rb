@@ -11,7 +11,7 @@ module AuthenticatedSystem
     end
 
     def login_from_param
-      self.current_user = Tenant.authenticate_session(params[:id], params[:session_id])
+      self.current_user = Tenant.authenticate_session(params[:login], params[:session_id])
     end
 
     # Accesses the current user from the session.

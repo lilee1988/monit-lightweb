@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
   # render new.rhtml
   def new
-    redirect_to logged_in? ? root_path : "http://www.chinaccnet.com/login.php?goto_page=http://www.chinaccnet.com/monit.php" and return
+    redirect_to current_user ? root_path : "http://www.chinaccnet.com/login.php?goto_page=http://www.chinaccnet.com/monit.php" and return
   end
 
   def create
