@@ -2,6 +2,7 @@
 # by tsechingho (http://github.com/tsechingho)
 
 "zh-CN":
+  production_url: "monit.chinaccnet.com"
   production_name: "Monit"
   production_title: "Monit监控云"
   production_version: "内测中"
