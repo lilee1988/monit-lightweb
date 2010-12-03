@@ -1,5 +1,9 @@
 Monit::Application.routes.draw do
 
+  resources :apps
+
+  resources :sites
+
   match 'home' => 'home#index', :as => :home
 
   resources :tenants

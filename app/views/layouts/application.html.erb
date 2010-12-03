@@ -23,20 +23,18 @@
               <%= yield :sidebar %>
               <%= menu_tag :id => "main-menu" do |item| %>
                 <%= item.sites :class => "first" + (current_tab?(:sites, :menu) ? " menu-current-first" : "") do %>
-                  <h4><%= link_to icon_tag("sites") + "网站" + content_tag(:span, "http,ping,dns"), {} %></h4>
+                  <h4><%= link_to icon_tag("sites") + "网站" + content_tag(:span, "http,ping,dns"), sites_path %></h4>
                   <%= submenu_tag do |subitem| %>
-                    <%= subitem.board link_to("Board", {:menu => 'widgets', :submenu => 'board', :anchor => 'board'}) %>
-                    <%= subitem.columns link_to("Columns", {:menu => 'widgets', :submenu => 'columns', :anchor => 'columns'}) %>
-                    <%= subitem.tabs link_to("Tabs", {:menu => 'widgets', :submenu => 'tabs', :anchor => 'tabs'}) %>
-                    <%= subitem.grid link_to("Grid", {:menu => 'widgets', :submenu => 'grid', :anchor => 'grid'}) %>
-                    <%= subitem.datagrid link_to("DataGrid", {:menu => 'widgets', :submenu => 'datagrid', :anchor => 'datagrid'}) %>
-                    <%= subitem.form link_to("Form", {:menu => 'widgets', :submenu => 'form', :anchor => 'form'}) %>
+                    <%= subitem.sites_index link_to(icon_tag("submenu") + "网站概述", sites_path) %>
                   <% end %>
                 <% end %>
                 <%= item.apps :class => "last" + (current_tab?(:apps, :menu) ? " menu-current-last" : "") do %>
                   <h4>
-                    <%= link_to icon_tag("apps") + "应用" + content_tag(:span, "Apache,Mysql,Nginx"), {} %>
+                    <%= link_to icon_tag("apps") + "应用" + content_tag(:span, "Apache,Mysql,Nginx"), apps_path %>
                   </h4>
+                  <%= submenu_tag do |subitem| %>
+                    <%= subitem.apps_index link_to(icon_tag("submenu") + "应用概述", apps_path) %>
+                  <% end %>
                 <% end %>
               <% end %>
 
