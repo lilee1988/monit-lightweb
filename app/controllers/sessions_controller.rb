@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   # include AuthenticatedSystem
   skip_before_filter :login_required
+  skip_before_filter :limit_for_test
   layout "entry" ,:only=>[:new, :create]
 
   # render new.rhtml
