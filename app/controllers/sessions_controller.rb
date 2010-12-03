@@ -7,7 +7,9 @@ class SessionsController < ApplicationController
 
   # render new.rhtml
   def new
-    redirect_to current_user ? root_path : "http://www.chinaccnet.com/login.php?goto_page=http://www.chinaccnet.com/monit.php" and return
+    current_user.update_attribute(:status, 2) if current_user #Login for invate
+    #redirect_to logged_in? ? root_path : "http://www.chinaccnet.com/login.php?goto_page=http://www.chinaccnet.com/monit.php" and return
+    redirect_to "http://www.chinaccnet.com/login.php?goto_page=http://www.chinaccnet.com/monit.php" unless logged_in?
   end
 
   def create
@@ -35,7 +37,7 @@ class SessionsController < ApplicationController
     redirect_back_or_default('/', :notice => "You have been logged out.")
   end
 
-protected
+  protected
   # Track failed login attempts
   def note_failed_signin
     #flash.now[:error] = "Couldn't log you in as '#{params[:login]}'"

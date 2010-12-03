@@ -7,11 +7,13 @@
     <p>
     <%= t("production_title") %>为中国政企客户、中小企业主、业务运营商、互联网网站等，提供创新的、简单的、低成本的可用性(Availability)、故障(Fault)与性能(Performance)IT网络监测服务。
     </p>
-    <%= form_tag remote_signup_url, :method => :get do %>
-      <p id="signup-button">
-      <%= hidden_field_tag "club", "monit" %>
-      <%=button_wrap_tag(submit_tag('新用户注册', :name => nil), :hl => true) %>
-      </p>
+    <% unless logged_in? %>
+      <%= form_tag remote_signup_url, :method => :get do %>
+        <p id="signup-button">
+        <%= hidden_field_tag "club", "monit" %>
+        <%=button_wrap_tag(submit_tag('新用户注册', :name => nil), :hl => true) %>
+        </p>
+      <% end %>
     <% end %>
   </div>
   <div id="preview">
@@ -20,7 +22,7 @@
 </div>
 <div id="new" class="clearfix">
   <h5><span><span>最近动态：</span></span></h5>
-  <div><span><%= extlink_to "Monit Cloud 1.3.2版本正式发布", "http://blog.monit.cn/?p=56"%></span></div>
+  <div><span><%= t("production_title") %>正在内测中...<%#= extlink_to "Monit Cloud 1.3.2版本正式发布", "http://blog.monit.cn/?p=56"%></span></div>
 </div>
 <div id="intro">
   <div class="columns columns3 clearfix">
