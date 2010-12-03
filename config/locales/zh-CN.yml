@@ -4,6 +4,7 @@
 "zh-CN":
   production_name: "Monit"
   production_title: "Monit监控云"
+  production_version: "内测中"
   cancel: "取消"
   update: "更新"
   create: "确定"
@@ -23,6 +24,11 @@
   metric: "指标"
   setting: "设置"
   home: "首页"
+  terms: "服务条款"
+  contact: "联系我们"
+  about: "关于我们"
+  feedback: "用户反馈"
+
   date:
     formats:
       default: "%Y-%m-%d"

@@ -4,8 +4,6 @@ Monit::Application.routes.draw do
 
   resources :tenants
 
-  get "welcome/index"
-
   resources :users
 
   resources :users do
@@ -29,6 +27,11 @@ Monit::Application.routes.draw do
 
   #match '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
 
+  match 'contact' => 'welcome#contact', :as => :contact
+  match 'jobs' => 'welcome#jobs', :as => :jobs
+  match 'about' => 'welcome#about', :as => :about
+  match 'terms' => 'welcome#terms', :as => :terms
+  get "welcome/index"
   root :to => "welcome#index"
 
   # The priority is based upon order of creation:

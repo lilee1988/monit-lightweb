@@ -7,38 +7,44 @@
       <!--header-->
       <div id="header" class="clearfix">
         <h2 id="logo">
-          <%= link_to "Open Style", root_path %>
+          <%= link_to image_tag("logo.png") + content_tag(:em, t("production_version")), root_path %>
         </h2>
         <div id="usernav">
-          <%= link_to "Settings", "/settings" %>
-          <%= pipe_tag %>
-          <%= link_to "Logout", "/logout" %>
+          <%#=link_to current_user.name, edit_account_path %>
+          <%#= pipe_tag %>
+          <%=link_to t("logout"), logout_url %>
         </div>
-        <div id="navigation" class="hide">
-          <%= navigation_tag do |nav| %>
-            <%= nav.main(link_to(icon_tag("home") + content_tag(:span, 'Main Page'), {:navigation => 'main', :anchor => 'main'})) %>
-            <%= nav.login(link_to(icon_tag("view") + content_tag(:span, 'Login'), {:navigation => 'login', :anchor => 'login'})) %>
-            <%= nav.signup(link_to(icon_tag("resource") + content_tag(:span, 'Signup'), {:navigation => 'signup', :anchor => 'signup'})) %>
-          <% end %>
-        </div>
-      </div>
-      <div id="header-line">
       </div>
       <!--header end-->
-      <div id="content">
-        <div class="wrap">
-          <% if content_for?(:sidebar) %>
-            <div id="wrapper" class="clearfix">
-              <div id="sidebar">
-                <%= yield :sidebar %>
-              </div>
-              <div id="main">
-                <%= yield %>
-              </div>
+      <div class="wrap">
+        <div id="content">
+          <div id="wrapper" class="clearfix">
+            <div id="sidebar">
+              <%= yield :sidebar %>
+              <%= menu_tag :id => "main-menu" do |item| %>
+                <%= item.sites :class => "first" + (current_tab?(:sites, :menu) ? " menu-current-first" : "") do %>
+                  <h4><%= link_to icon_tag("sites") + "网站" + content_tag(:span, "http,ping,dns"), {} %></h4>
+                  <%= submenu_tag do |subitem| %>
+                    <%= subitem.board link_to("Board", {:menu => 'widgets', :submenu => 'board', :anchor => 'board'}) %>
+                    <%= subitem.columns link_to("Columns", {:menu => 'widgets', :submenu => 'columns', :anchor => 'columns'}) %>
+                    <%= subitem.tabs link_to("Tabs", {:menu => 'widgets', :submenu => 'tabs', :anchor => 'tabs'}) %>
+                    <%= subitem.grid link_to("Grid", {:menu => 'widgets', :submenu => 'grid', :anchor => 'grid'}) %>
+                    <%= subitem.datagrid link_to("DataGrid", {:menu => 'widgets', :submenu => 'datagrid', :anchor => 'datagrid'}) %>
+                    <%= subitem.form link_to("Form", {:menu => 'widgets', :submenu => 'form', :anchor => 'form'}) %>
+                  <% end %>
+                <% end %>
+                <%= item.apps :class => "last" + (current_tab?(:apps, :menu) ? " menu-current-last" : "") do %>
+                  <h4>
+                    <%= link_to icon_tag("apps") + "应用" + content_tag(:span, "Apache,Mysql,Nginx"), {} %>
+                  </h4>
+                <% end %>
+              <% end %>
+
             </div>
-          <% else %>
-            <%=yield %>
-          <% end %>
+            <div id="main">
+              <%= yield %>
+            </div>
+          </div>
         </div>
       </div>
       <%=render :partial=>'layouts/footer'%>

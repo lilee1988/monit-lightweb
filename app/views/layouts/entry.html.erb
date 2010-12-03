@@ -10,8 +10,16 @@
       <!--header-->
       <div id="header" class="clearfix">
         <h2 id="logo">
-          <%= link_to image_tag("index_logo.png") + content_tag(:em, "测试版"), root_path %>
+          <%= link_to image_tag("index_logo.png") + content_tag(:em, t("production_version")), root_path %>
         </h2>
+        <% if logged_in? %>
+          <div id="usernav">
+            <%=link_to current_user.login, edit_account_path %>
+            <%= pipe_tag %>
+            <%=link_to t("logout"), logout_url %>
+          </div>
+        <% end %>
+
         <!--header end-->
       </div>
       <div class="wrap">

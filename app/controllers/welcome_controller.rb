@@ -1,8 +1,10 @@
 class WelcomeController < ApplicationController
   skip_before_filter :login_required
+  skip_before_filter :limit_for_test
 
   def index
-    redirect_to home_path and return if current_user
+    @title = "首页"
+    #redirect_to home_path and return if current_user
   end
 
   #隐私条款
