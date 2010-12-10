@@ -1,17 +1,14 @@
-<%= form_for(@site) do |f| %>
-  <% if @site.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@site.errors.count, "error") %> prohibited this site from being saved:</h2>
-
-      <ul>
-      <% @site.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+<%= form_for(@site, :builder => OpenStyle::FormBuilder, :html => {:class => "form"}) do |f| %>
+  <%= f.item(:name, :required => true) do %>
+    <%= f.text_field(:name) %>
+    <%= f.help(:name, "网站唯一名称") %>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.item(:url, :required => true) do %>
+    <%= f.text_field(:url) %>
+    <%= f.help(:url, "网站地址，例如：http://www.monit.cn") %>
+  <% end %>
+  <%= render :partial => "notifications/setting", :locals => {:f => f, :source => "site", :types => ["down", "recovery"] } unless @site.new_record? %>
+  <p class="form-actions">
+  <%= f.submit t(@site.new_record? ? 'create' : 'update') %>
+  </p>
 <% end %>

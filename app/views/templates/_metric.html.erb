@@ -1,0 +1,22 @@
+<%
+  view.normalize_data
+  view.format_data
+  view.show_unit
+  view.filter_data
+%>
+<table class="table" cellspacing="0">
+  <thead>
+    <tr>
+      <% view.columns.each do |col| %>
+        <%=th_tag "#{col.human_name}" %>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <% view.rows.each do |k, v| %>
+        <%=td_tag "#{v}" %>
+      <% end %>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,183 @@
+<%
+  tem_id = "tem_#{[].object_id.abs}".to_sym
+%>
+<% content_for tem_id do %>
+<?xml version="1.0" encoding="utf-8"?>
+<settings> 
+  <data_type>CSV</data_type>
+  <redraw>true</redraw>
+  <decimals_separator>.</decimals_separator>                                   
+  <font>Tahoma</font>                                          
+  <text_size>12</text_size>                                    
+<depth>15</depth>
+<angle>45</angle>
+  <balloon>
+    <enabled></enabled>
+    <color></color>
+    <alpha>80</alpha>
+    <text_color>#000000</text_color>
+    <text_size></text_size>
+    <max_width></max_width>
+    <corner_radius>5</corner_radius>
+    <border_width>3</border_width>
+    <border_alpha>60</border_alpha>
+    <border_color>#000000</border_color>
+  </balloon>
+
+<column>
+<type>stacked</type>
+<width>85</width>
+<grow_time>0</grow_time>
+</column>
+  <labels>
+    <label lid="0">
+      <x></x>                                                 <!-- [0] (Number / Number% / !Number) -->
+      <y>25</y>                                               <!-- [0] (Number / Number% / !Number) -->
+      <rotate></rotate>                                       <!-- [false] (true / false) -->
+      <width></width>                                         <!-- [] (Number / Number%) if empty, will stretch from left to right untill label fits -->
+
+      <align>center</align>                                   <!-- [left] (left / center / right) -->  
+      <text_color></text_color>                               <!-- [text_color] (hex color code) button text color -->
+      <text_size></text_size>                                 <!-- [text_size](Number) button text size -->
+      <text>                                                  <!-- [] (text) html tags may be used (supports <b>, <i>, <u>, <font>, <a href="">, <br/>. Enter text between []: <![CDATA[your <b>bold</b> and <i>italic</i> text]]>-->
+                <![CDATA[<b><%=view.name%></b>]]>
+      </text>        
+    </label>
+
+  </labels>
+  <graphs>             
+  <% 
+    n = 0
+    @unit = nil
+    view.columns.each do |col|
+      if n > 0
+        @unit = col.data_unit
+    %>
+  <graph gid="<%=n%>">    
+  <title><%= col.human_name %></title>
+      <balloon_text_color>000000</balloon_text_color> 
+      <color><%=col.color%></color>   
+      <balloon_text> 
+      <![CDATA[{title} {value}<%= @unit %>]]> 
+      </balloon_text> 
+    </graph> 
+    <%
+      end
+      n = n + 1
+    end
+    %>
+  </graphs>  
+
+  <grid> 
+    <x>                                          
+      <alpha>10</alpha> 
+      <dashed>true</dashed> 
+      <approx_count>16</approx_count> 
+    </x> 
+    <y_left>
+      <alpha>15</alpha> 
+    </y_left> 
+    <y_right>      
+      <alpha>10</alpha> 
+      <dashed>true</dashed> 
+    </y_right>    
+  </grid> 
+  
+  <values>                 
+    <x>                    
+      <skip_first>true</skip_first> 
+      <skip_last>true</skip_last>  
+      <color>999999</color>        
+      <text_size>11</text_size>
+
+	  <frequency>3</frequency>        
+    </x> 
+	<y_left>
+		<!--max>100</max-->
+		<min>0</min>
+		<unit><%= @unit %></unit>
+		<frequency>2</frequency>
+
+	</y_left>
+  </values> 
+  <axes>                           
+    <x>                            
+      <color>E7E7E7</color>       
+      <alpha>100</alpha>   
+      <width>1</width>     
+    </x> 
+    <y_left> 
+      <type>line</type>                                    <!-- [line] (line, stacked, 100% stacked) -->
+
+      <alpha>0</alpha> 
+    </y_left> 
+    <y_right> 
+      <alpha>0</alpha> 
+    </y_right>    
+  </axes>  
+  <indicator> 
+    <enabled></enabled>
+    <color>D84B3C</color> 
+    <selection_color>D84B3C</selection_color> 
+    <line_alpha>50</line_alpha> 
+    <x_balloon_text_color>000000</x_balloon_text_color> 
+  </indicator> 
+  
+  <vertical_lines> 
+   <width>80</width> 
+   <alpha>70</alpha> 
+  </vertical_lines> 
+  
+  <export_as_image>                                           <!-- export_as_image feature works only on a web server -->
+
+    <file>export.php</file>                                             <!-- [] (filename) if you set filename here, context menu (then user right clicks on flash movie) "Export as image" will appear. This will allow user to export chart as an image. Collected image data will be posted to this file name (use amline/export.php or amline/export.aspx) -->
+    <target></target>                                         <!-- [] (_blank, _top ...) target of a window in which export file must be called -->
+    <x></x>                                                   <!-- [0] (Number / Number% / !Number) x position of "Collecting data" text -->
+    <y></y>                                                   <!-- [] (Number / Number% / !Number) y position of "Collecting data" text. If not set, will be aligned to the bottom of flash movie -->
+    <color></color>                                           <!-- [#BBBB00] (hex color code) background color of "Collecting data" text -->
+    <alpha></alpha>                                           <!-- [0] (0 - 100) background alpha -->
+
+    <text_color></text_color>                                 <!-- [text_color] (hex color code) -->
+    <text_size></text_size>                                   <!-- [text_size] (Number) -->
+  </export_as_image>
+  
+  <error_messages>                                            <!-- "error_messages" settings will be applied for all error messages except the one which is showed if settings file wasn't found -->
+    <enabled></enabled>                                       <!-- [true] (true / false) -->
+    <x></x>                                                   <!-- [] (Number / Number% / !Number) x position of error message. If not set, will be aligned to the center -->
+
+    <y></y>                                                   <!-- [] (Number / Number% / !Number) y position of error message. If not set, will be aligned to the center -->
+    <color></color>                                           <!-- [#BBBB00] (hex color code) background color of error message. Separate color codes with comas for gradient -->
+    <alpha></alpha>                                           <!-- [100] (0 - 100) background alpha -->
+    <text_color></text_color>                                 <!-- [#FFFFFF] (hex color code) -->
+    <text_size></text_size>                                   <!-- [text_size] (Number) -->
+  </error_messages>    
+  
+  <strings>
+
+    <no_data></no_data>                                       <!-- [No data for selected period] (text) if data for selected period is missing, this message will be displayed -->
+    <export_as_image>另存为图片</export_as_image>                       <!-- [Export as image] (text) text for right click menu -->
+    <error_in_data_file></error_in_data_file>                 <!-- [Error in data file] (text) this text is displayed if there is an error in data file or there is no data in file. "There is no data" means that there should actually be at least one space in data file. If data file will be completly empty, it will display "error loading file" text -->
+    <collecting_data>正在生成图片</collecting_data>                       <!-- [Collecting data] (text) this text is displayed while exporting chart to an image -->
+    <wrong_zoom_value></wrong_zoom_value>                     <!-- [Incorrect values] (text) this text is displayed if you set zoom through JavaScript and entered from or to value was not find between series -->
+
+    <!-- the strings below are only important if you format your axis values as durations -->
+    <ss></ss>                                                <!-- [] unit of seconds -->
+    <mm></mm>                                                <!-- [:] unit of minutes -->
+    <hh></hh>                                                <!-- [:] unit of hours -->
+    <DD>&nbsp;</DD>                                                <!-- [d. ] unit of days -->        
+  </strings>
+
+</settings>
+<% end %>
+<% 
+  view_settings = yield tem_id
+  if view.data_url
+    concat amcharts_tag(:column, "#{view.width}x#{view.height}", nil, view_settings, {:data_file => view.data_url})
+  else
+    view.normalize_data
+    view.format_data
+    view.filter_data
+    view_data = view.rows.to_s("\n",";")
+    concat amcharts_tag(:column, "#{view.width}x#{view.height}", view_data, view_settings)
+  end
+%>

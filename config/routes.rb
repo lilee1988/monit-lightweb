@@ -1,8 +1,36 @@
 Monit::Application.routes.draw do
 
+  resources :views
+
+  resources :services do
+    resources :views do
+      member do
+        get :data
+      end
+    end
+  end
+
   resources :apps
 
-  resources :sites
+  resources :sites do
+    resources :services do
+      resources :views do
+        member do
+          get :data
+        end
+      end
+    end
+
+    member do
+      get :confirm
+      get :ctrl
+      put :ctrl_update
+    end
+    collection do
+      get :edit_notification
+      put :batch_update
+    end
+  end
 
   match 'home' => 'home#index', :as => :home
 

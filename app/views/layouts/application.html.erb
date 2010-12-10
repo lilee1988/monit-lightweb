@@ -25,7 +25,7 @@
                 <%= item.sites :class => "first" + (current_tab?(:sites, :menu) ? " menu-current-first" : "") do %>
                   <h4><%= link_to icon_tag("sites") + "网站" + content_tag(:span, "http,ping,dns"), sites_path %></h4>
                   <%= submenu_tag do |subitem| %>
-                    <%= subitem.sites_index link_to(icon_tag("submenu") + "网站概述", sites_path) %>
+                    <%= subitem.sites_index link_to(icon_tag("submenu") + "网站列表", sites_path) %>
                   <% end %>
                 <% end %>
                 <%= item.apps :class => "last" + (current_tab?(:apps, :menu) ? " menu-current-last" : "") do %>
@@ -40,6 +40,20 @@
 
             </div>
             <div id="main">
+              <% unless flash[:notice].blank? %>
+                <div class="wrap content-notice">
+                  <p class="notice notice-success">
+                  <%= flash[:notice] %>
+                  </p>
+                </div>
+              <% end %>
+              <% unless flash[:error].blank? %>
+                <div class="wrap content-notice">
+                  <p class="notice notice-error">
+                  <%= flash[:error] %>
+                  </p>
+                </div>
+              <% end %>
               <%= yield %>
             </div>
           </div>

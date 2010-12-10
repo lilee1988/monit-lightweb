@@ -1,0 +1,35 @@
+<%
+  view.normalize_data
+  view.format_data
+  view.show_unit
+  view.filter_data
+%>
+<div class="datagrid">
+  <h5><%= view.link.blank? ? view.name : (link_to view.name, view.link)%></h5>
+  <table cellspacing="0">
+    <thead>
+      <tr>
+        <% view.columns.each do |col| %>
+          <%=th_tag "#{col.human_name}" %>
+        <% end %>            
+      </tr>
+    </thead>
+    <tbody>
+      <% if view.rows.size > 0 %>
+        <% view.rows.each do |row| %>
+          <tr class="<%= cycle("odd", "even") %>">
+
+            <% row.each do |k, v| %>
+              <%=td_tag "#{v}" %>
+            <% end %>
+          </tr>
+        <% end %>
+      <%else%>
+        <tr>
+          <%=td_tag " 暂无数据"%>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

@@ -1,5 +1,14 @@
-<h1>New site</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', sites_path %>
+<div class="wrap">
+  <%= board_tag :id => "sites" do %>
+    <%= board_header_tag "添加网站" %>
+    <%= board_content_tag do %>
+      <div class="notice">
+        <ul>
+          <li>Monit可以检测网站可用性，并在网站故障通知您</li>
+          <li>Monit可以记录网站可用率以及访问速度，为您调整网络提供帮助</li>
+        </ul>
+      </div>
+      <%= render 'form' %>
+    <% end %>
+  <% end %>
+</div>

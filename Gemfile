@@ -12,6 +12,9 @@ gem 'rubyist-aasm', :require => 'aasm'
 
 gem "will_paginate", "~> 3.0.pre2"
 
+gem "mongoid", "2.0.0.beta.20"
+gem "bson_ext", "1.1.4"
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

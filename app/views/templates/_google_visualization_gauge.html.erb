@@ -1,0 +1,21 @@
+<%
+  @import_js_google_api = true
+  view.normalize_data
+  view.format_data
+  view.filter_data
+  str = view.to_google_data_table("data")
+  id = "chart#{[].object_id.abs}"
+%>
+<% content_for :head do %>
+  <script type='text/javascript'>
+    google.load('visualization', '1', {packages:['gauge']});
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+      <%= str %>
+        var chart = new google.visualization.Gauge(document.getElementById('<%=id%>'));
+      var options = {width: "<%=view.width%>", height: "<%=view.height%>", redFrom: 90, redTo: 100, yellowFrom:75, yellowTo: 90, minorTicks: 5};
+      chart.draw(data, options);
+    }
+  </script>
+<% end %>
+<div id='<%=id%>'></div>

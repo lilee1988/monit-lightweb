@@ -1,21 +1,42 @@
-<h1>Listing sites</h1>
+<div class="wrap">
+  <%= board_tag :id => "sites" do %>
+    <%= board_header_tag "网站" %>
+    <%= board_content_tag do %>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+      <div class="filters clearfix">
+        <%= status_tabs @status_tab, @current_status_name, {} %>
+      </div>
+      <%= form_tag(url_for(:action => "index"), :method => :get) do%>
+        <%= redirect_tag url_for(params) %>
 
-<% @sites.each do |site| %>
-  <tr>
-    <td><%= link_to 'Show', site %></td>
-    <td><%= link_to 'Edit', edit_site_path(site) %></td>
-    <td><%= link_to 'Destroy', site, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Site', new_site_path %>
+        <%= grid_tag do |g| %>
+          <%= g.head do %>
+            <%= g.h sort_link_to("name", Site.human_attribute_name("name"), params), :style => "width:120px;" %>
+            <%= g.h Site.human_attribute_name('status'), :style => "width: 50px;" %>
+            <%= g.h sort_link_to("url", Site.human_attribute_name("url"), params), :style => "width:150px;" %>
+            <%= g.h sort_link_to("last_check", Site.human_attribute_name("last_check"), params), :class => "time" %>
+            <%= g.h Site.human_attribute_name 'summary' %>
+          <% end %>
+          <%= g.foot do %>
+            <%= will_paginate @sites %>
+          <% end %>
+          <%= g.body do %>
+            <% @sites.each do |site| %>
+              <%= g.r do %>
+                <%= g.d link_to(site.name, site) %>
+                <%= g.d h(t("status.site." + site.status_name)), :class => "status status-site-" + site.status_name %>
+                <%= g.d extlink_to(site.url, site.url) %>
+                <%= g.d format_time(site.last_check, true) %>
+                <%= g.d site.summary %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <br />
+      <%= form_tag new_site_path, :method => :get do %>
+        <%= button_wrap_tag(submit_tag '添加网站', :name => nil) %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

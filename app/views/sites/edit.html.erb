@@ -1,6 +1,9 @@
-<h1>Editing site</h1>
+<div class="wrap">
+  <%= board_tag :id => "sites" do %>
+    <%= board_header_tag "修改网站" %>
+    <%= board_content_tag do %>
+      <%= render 'form' %>
+    <% end %>
+  <% end %>
+</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @site %> |
-<%= link_to 'Back', sites_path %>

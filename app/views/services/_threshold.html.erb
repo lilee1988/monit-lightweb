@@ -1,0 +1,14 @@
+<% unless @service.threshold_warning_text.blank? and  @service.threshold_critical_text.blank? %>
+  <% field_set_tag "阈值设置", :id=>"threshold" do %>
+    <% unless @service.threshold_warning_text.blank? %>
+      <%= f.item :threshold_warning ,{ :label => "服务警告阈值" } do %>
+        <%= service_threshold_tag(@service, 'threshold_warning') %>
+      <% end %>
+    <% end %>
+    <% unless @service.threshold_critical_text.blank? %>
+      <%= f.item :threshold_critical ,{ :label => "服务故障阈值" } do %>
+        <%= service_threshold_tag(@service, 'threshold_critical') %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

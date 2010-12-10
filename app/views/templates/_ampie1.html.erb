@@ -1,0 +1,160 @@
+<%
+tem_id = "tem_#{[].object_id.abs}".to_sym
+unit = ""
+unit = view.columns.first.data_unit if view.columns.size > 0
+%>
+<% content_for tem_id do %>
+  <?xml version="1.0" encoding="UTF-8"?>
+  <!-- Value between [] brackets, for example [#FFFFFF] shows default value which is used if this parameter is not set -->
+  <!-- This means, that if you are happy with this value, you can delete this line at all and reduce file size         -->
+  <!-- value or explanation between () brackets shows the range or type of values you should use for this parameter    -->
+  <!-- the top left corner has coordinates x = 0, y = 0                                                                -->
+  <!-- "!" before x or y position (for example: <x>!20</x>) means that the coordinate will be calculated from the right side or the bottom -->
+
+  <settings>
+    <data_type>csv</data_type>                                     <!-- [xml] (xml / csv) -->
+    <csv_separator></csv_separator>                             <!-- [;] (string) csv file data separator (you need it only if you are using csv file for your data) -->
+    <skip_rows></skip_rows>                                     <!-- [0] (Number) if you are using csv data type, you can set the number of rows which should be skipped here -->
+    <font></font>                                               <!-- [Arial] (font name) use device fonts, such as Arial, Times New Roman, Tahoma, Verdana... -->
+    <text_size></text_size>                                     <!-- [11] (Number) text size of all texts. Every text size can be set individually in the settings below -->
+    <text_color></text_color>                                   <!-- [#000000] (hex color code) main text color. Every text color can be set individually in the settings below-->
+    <decimals_separator>,</decimals_separator>                  <!-- [,] (string) decimal separator. Note, that this is for displaying data only. Decimals in data xml file must be separated with a dot -->
+    <thousands_separator> </thousands_separator>                <!-- [ ] (string) thousand separator. use "none" if you don't want to separate -->
+    <digits_after_decimal></digits_after_decimal>               <!-- [] (Number) if your value has less digits after decimal then is set here, zeroes will be added -->
+    <scientific_min></scientific_min>                           <!-- [0.000001] If absolute value of your number is equal or less then scientific_min, this number will be formatted using scientific notation, for example: 0.0000023 -> 2.3e-6 -->
+    <scientific_max></scientific_max>                           <!-- [1000000000000000] If absolute value of your number is equal or bigger then scientific_max, this number will be formatted using scientific notation, for example: 15000000000000000 -> 1.5e16 -->
+    <redraw>true</redraw>                                       <!-- [false] (true / false) if your chart's width or height is set in percents, and redraw is set to true, the chart will be redrawn then screen size changes -->
+    <reload_data_interval></reload_data_interval>               <!-- [0] (Number) how often data should be reloaded (time in seconds) -->
+    <preloader_on_reload></preloader_on_reload>                 <!-- [false] (true / false) Whether to show preloaded when data or settings are reloaded -->
+    <add_time_stamp></add_time_stamp>                           <!-- [false] (true / false) if true, a unique number will be added every time flash loads data. Mainly this feature is useful if you set reload _data_interval -->
+    <precision>1</precision>                                    <!-- [2] (Number) shows how many numbers should be shown after comma for calculated values (percents) -->
+    <exclude_invisible></exclude_invisible>                     <!-- [false] (true / false) whether to exclude invisible slices (where alpha=0) then calculating percent values or not -->
+    <js_enabled></js_enabled>                                   <!-- [true] (true / false) In case you don't use any flash - JavaScript communication, you shuold set this setting to false - this will save some CPU and will disable the security warning message which appears when opening the chart from hard drive. -->
+
+    <pie>                                                 <!-- [50%](Number / Number% / !Number) -->
+      <y>50%</y>                                                   <!-- [45%](Number / Number% / !Number) -->                                       <!-- [25%] (Number / Number%)  -->
+      <inner_radius>30</inner_radius>                      <!-- [0] (Number / Number%) the radius of the hole (if you want to have donut, use > 0) -->                     <!-- [20] (-100 - 100) if base_color is used, every next slice is filled with lighter by brightnessStep % color. Use negative value if you want to get darker colors -->
+      <colors><%
+        colors=(view.columns.collect{|x| x.color})
+        colors.delete_if{|x|  x.blank? }
+        concat(colors.join(","))
+      %></colors>
+      <!-- [#FF0F00,#FF6600,#FF9E01,#FCD202,#F8FF01,#B0DE09,#04D215,#0D8ECF,#0D52D1,#2A0CD0,#8A0CCF,#CD0D74,#754DEB,#DDDDDD,#999999,#333333,#990000] (hex color codes separated by comas) -->                    <!-- [0,-40] (Numbers from (-255 to 255) separated by commas) Controls the gradient ratio -->
+    </pie>
+
+    <animation>
+      <start_time></start_time>                                 <!-- [0] (Number) fly-in time in seconds. Leave 0 to appear instantly -->
+      <start_effect>bounce</start_effect>                       <!-- [bounce] (bounce, regular, strong) -->
+      <start_radius></start_radius>                             <!-- [500%] (Number / Number%) -->
+      <start_alpha>0</start_alpha>                              <!-- [0] (Number) -->
+      <sequenced></sequenced>                                   <!-- [false] (true / false) Whether the slices should appear all together or one after another -->
+      <pull_out_on_click></pull_out_on_click>                   <!-- [true] (true / false) whether to pull out slices when user clicks on them (or on legend entry) -->
+      <pull_out_time></pull_out_time>                           <!-- [0] (number) pull-out time (then user clicks on the slice) -->
+      <pull_out_effect>Bounce</pull_out_effect>                 <!-- [bounce] (bounce, regular, strong) -->
+      <pull_out_radius></pull_out_radius>                       <!-- [20%] (Number / Number%) how far pie slices should be pulled-out then user clicks on them -->
+      <pull_out_only_one></pull_out_only_one>                   <!-- [false] (true / false) if set to true, when you click on any slice, all other slices will be pushed in -->
+    </animation>
+
+  <data_labels>
+    <show>{title}: {value}</show>
+    <max_width>140</max_width>
+  </data_labels>
+
+    <group>
+      <percent></percent>                                       <!-- [0] (Number) if the calculated percent value of a slice is less than specified here, and there are more than one such slices, they can be grouped to "The others" slice-->
+      <color></color>                                           <!-- [] (hex color code) color of "The others" slice -->
+      <title></title>                                           <!-- [Others] title of "The others" slice -->
+      <url></url>                                               <!-- [] url of "The others" slice -->
+      <description></description>                               <!-- [] description of "The others" slice -->
+      <pull_out></pull_out>                                     <!-- [false] (true / false) whether to pull out the other slice or not -->
+    </group>
+
+    <background>
+      <alpha></alpha>
+      <border_alpha></border_alpha>
+    </background>
+
+    <balloon>                                                   <!-- BALLOON -->
+      <enabled></enabled>                                       <!-- [true] (true / false) -->
+      <color></color>                                           <!-- [] (hex color code) balloon background color. If empty, slightly darker then current slice color will be used -->
+      <alpha>80</alpha>                                         <!-- [80] (0 - 100) -->
+      <text_color></text_color>                                 <!-- [#FFFFFF] (hex color code) -->
+      <text_size></text_size>                                   <!-- [text_size] (Number) -->
+      <show>
+        <![CDATA[{title}: {value}<%=unit%> ({percents}%)]]>                       <!-- [{title}: {percents}% ({value}) <br>{description}] ({value} {title} {percents} {description}) You can format any data label: {value} - will be replaced with value and so on. You can add your own text or html code too. -->
+      </show>
+      <max_width></max_width>                                   <!-- [220] (Number) The maximum width of a balloon -->
+      <corner_radius>5</corner_radius>                          <!-- [0] (Number) Corner radius of a balloon. If you set it > 0, the balloon will not display arrow -->
+      <border_width>3</border_width>                            <!-- [0] (Number) -->
+      <border_alpha>50</border_alpha>                           <!-- [balloon.alpha] (Number) -->
+      <border_color>#000000</border_color>                      <!-- [balloon.color] (hex color code) -->
+    </balloon>
+
+    <legend>
+      <enabled>0</enabled>
+      <align>center</align>
+    </legend>
+
+    <export_as_image>                                           <!-- export_as_image feature works only on a web server -->
+      <file></file>                                             <!-- [] (filename) if you set filename here, context menu (then user right clicks on flash movie) "Export as image" will appear. This will allow user to export chart as an image. Collected image data will be posted to this file name (use ampie/export.php or ampie/export.aspx) -->
+      <target></target>                                         <!-- [] (_blank, _top ...) target of a window in which export file must be called -->
+      <x></x>                                                   <!-- [0] (Number / Number% / !Number) x position of "Collecting data" text -->
+      <y></y>                                                   <!-- [] (Number / Number% / !Number) y position of "Collecting data" text. If not set, will be aligned to the bottom of flash movie -->
+      <color></color>                                           <!-- [#BBBB00] (hex color code) background color of "Collecting data" text -->
+      <alpha></alpha>                                           <!-- [0] (0 - 100) background alpha -->
+      <text_color></text_color>                                 <!-- [text_color] (hex color code) -->
+      <text_size></text_size>                                   <!-- [text_size] (Number) -->
+    </export_as_image>
+
+    <error_messages>                                            <!-- "error_messages" settings will be applied for all error messages except the one which is showed if settings file wasn't found -->
+      <enabled></enabled>                                       <!-- [true] (true / false) -->
+      <x></x>                                                   <!-- [] (Number / Number% / !Number) x position of error message. If not set, will be aligned to the center -->
+      <y></y>                                                   <!-- [] (Number / Number% / !Number) y position of error message. If not set, will be aligned to the center -->
+      <color></color>                                           <!-- [#BBBB00] (hex color code) background color of error message. Separate color codes with comas for gradient -->
+      <alpha></alpha>                                           <!-- [100] (0 - 100) background alpha -->
+      <text_color></text_color>                                 <!-- [#FFFFFF] (hex color code) -->
+      <text_size></text_size>                                   <!-- [text_size] (Number) -->
+    </error_messages>
+
+    <strings>
+      <no_data></no_data>                                       <!-- [No data for selected period] (text) if data is missing, this message will be displayed -->
+      <export_as_image></export_as_image>                       <!-- [Export as image] (text) text for right click menu -->
+      <collecting_data></collecting_data>                       <!-- [Collecting data] (text) this text is displayed while exporting chart to an image -->
+    </strings>
+
+    <context_menu>                                              <!-- context menu allows you to controll right-click menu items. You can add custom menu items to create custom controls -->
+      <!-- "function_name" specifies JavaScript function which will be called when user clicks on this menu. You can pass variables, for example: function_name="alert('something')" -->
+      <!-- "title" sets menu item text. Do not use for title: Show all, Zoom in, Zoom out, Print, Settings... -->
+      <!-- you can have any number of custom menus. Uncomment the line below to enable this menu and add apropriate JS function to your html file. -->
+
+      <!-- <menu function_name="printChart" title="Print chart"></menu> -->
+
+      <default_items>
+        <zoom></zoom>                                          <!-- [false] (true / false) to show or not flash players zoom menu -->
+        <print></print>                                        <!-- [true] (true / false) to show or not flash players print menu -->
+      </default_items>
+    </context_menu>
+    <labels>
+      <label lid="0">
+        <x>0</x>                                                <!-- [0] (Number / Number% / !Number) -->
+        <y>10</y>                                               <!-- [0] (Number / Number% / !Number) -->
+        <rotate>false</rotate>                                  <!-- [false] (true / false) -->
+        <width></width>                                         <!-- [] (Number / Number%) if empty, will stretch from left to right untill label fits -->
+        <align>center</align>                                   <!-- [left] (left / center / right) -->
+        <text_color></text_color>                               <!-- [text_color] (hex color code) button text color -->
+        <text_size>12</text_size>                               <!-- [text_size](Number) button text size -->
+        <text>                                                  <!-- [] (text) html tags may be used (supports <b>, <i>, <u>, <font>, <a href="">, <br/>. Enter text between []: <![CDATA[your <b>bold</b> and <i>italic</i> text]]>-->
+          <![CDATA[<b><%= view.name %></b>]]>
+        </text>
+      </label>
+    </labels>
+  </settings>
+<% end %>
+<%
+view_settings = yield tem_id
+view.normalize_data
+view.format_data
+view.filter_data
+view_data = view.rows.to_s("\n",";")
+%>
+<%=amcharts_tag(:pie, "#{view.width}x#{view.height}", view_data, view_settings) %>

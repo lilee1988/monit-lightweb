@@ -1,0 +1,34 @@
+<%
+  view.normalize_data
+  view.format_data
+  view.show_unit
+  view.filter_data
+%>
+<div style="background: #efefef;padding: 5px;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;margin-bottom: 20px;">
+  <h5 style="font-size: 12px; margin: 0;padding-top: 2px;padding-bottom: 7px;"><%= view.name %></h5>
+  <table cellspacing="0" style="width:100%;border-spacing:0px;border-collapse:collapse;table-layout: fixed;background: #fff;">
+    <thead>
+      <tr>
+        <% view.columns.each do |col| %>
+          <th style="text-align: left;font-weight: normal;padding: 3px 5px;border: 1px solid #f9f9f9;"><%= "#{col.human_name}" %></th>
+        <% end %>            
+      </tr>
+    </thead>
+    <tbody>
+      <% if view.rows.size > 0 %>
+        <% view.rows.each do |row| %>
+          <tr style="background: <%= cycle("", "#fafafa") %>;">
+            <% row.each do |k, v| %>
+              <td style="padding: 3px 5px;border: 1px solid #f9f9f9;"><%="#{v}" %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      <%else%>
+        <tr>
+          <%=td_tag " 暂无数据"%>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

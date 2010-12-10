@@ -1,5 +1,69 @@
-<p id="notice"><%= notice %></p>
+<div class="wrap">
+  <%= board_tag :id => "sites" do %>
+    <%= board_header_tag do %>
+      <%= icon_status("site", @site.status_name) %><%=h @site.name %>
+    <% end %>
+    <%= board_content_tag do %>
+      <div class="details">
+        <div class="ui-actions">
+          <span>
+            <span>
+              <%= link_to(icon_tag("edit") + "修改", edit_site_url(@site))%>
+              <%#= link_to("添加服务", new_site_service_path(@site),:class=>controlled("services/new"))%>
+              <%= link_to("通知设置", edit_site_url(@site, :anchor => "notification"))%>
+              <%= link_to(icon_tag("delete") + "删除", site_url(@site), :method => :delete, :confirm => "确认删除应用？", :class => "last")%>
+              <%#= link_to(icon_tag("delete") + "删除", confirm_site_url(@site), :class => "last ")%>
+            </span>
+          </span>
+        </div>
+        <p>
+        <b><%= Site.human_attribute_name('url') %></b>
+        <span><%= extlink_to(@site.url, @site.url) %></span>
+        </p>
+        <p>
+        <b><%= Site.human_attribute_name('status') %></b>
+        <span><%=@site.human_status_name %></span>
+        </p>
+        <p>
+        <b><%= Site.human_attribute_name('summary') %></b>
+        <span><%=h @site.summary %></span>
+        </p>
+        <p>
+        <p>
+        <b><%= Site.human_attribute_name('ctrl_service') %></b>
+        <span> <%= (@site.ctrl_service ? link_to(@site.ctrl_service.name, site_service_path(@site, @site.ctrl_service)) : "无") %> <%= inlink_to "修改", ctrl_site_path(@site) %></span>
+        </p>
+      </div>
+    <% end %>
+  <% end %>
 
+  <%
+    @services = @site.services.all(:include=>[:history_views])
+  %>
+  <% @services.each do |service| %>
+    <%= render :partial=> "services/metric_view", :locals => {:service => service} %>
+  <% end %>
+</div>
+<%
+  if false
+    while @services.size > 0
+      service = @services.shift
+    %>
+    <%= columns_tag :id => "column2" do %>
+      <%= column_tag do %>
+        <%= render :partial=> "services/metric_view", :locals => {:service => service} %>
+      <% end %>
+      <%= column_tag :class => "column-last" do %>
+        <%
+          if @services.size > 0
+            service = @services.shift
+          %>
+          <%= render :partial=> "services/metric_view", :locals => {:service => service} %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <% 
+    end 
+  end 
+%>
 
-<%= link_to 'Edit', edit_site_path(@site) %> |
-<%= link_to 'Back', sites_path %>

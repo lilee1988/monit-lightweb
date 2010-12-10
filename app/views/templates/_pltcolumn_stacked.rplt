@@ -1,0 +1,49 @@
+<%
+  format = (params[:format] || :png).to_sym
+  format = :jpeg if format == :jpg
+  view.normalize_data
+  view.format_data
+  #view.show_unit
+  view.filter_data
+  #空出第一格，防止第一个字母含有"e"
+  title = ";" + view.columns.collect{|c| c.alias }.join(";")
+  data = view.rows.to_s("\n;",";")
+  num = view.columns.size
+  data_str = ""
+  2.upto(num) do |n|
+    data_str << (title + "\n;" + data + "\n" + "e" + "\n")
+  end
+  i = 2
+  use_str = view.columns[1..-1].collect{ |c| "'-' using #{i = i + 1}:xtic(2)" + (c.color ? " lt rgb \"\##{c.color}\"" : "") }.join(", ")
+  rows_size = view.rows.size
+  rotate = rows_size > 4 ? (rows_size > 20 ? "rotate by -90" : "rotate by -#{(rows_size)*90/20}") : "norotate"
+  #puts data_str
+  #puts use_str
+  #rotate = "norotate"
+%>
+# set terminal png transparent nocrop enhanced font arial 8 size 420,320 
+# set output 'histograms.6.png'
+set terminal <%=format%> truecolor font 'simsun.ttc,10' size <%= view.width %>,<%= view.height %>
+set border 3 front linetype -1 linewidth 1.000
+#set size 0.5, 0.5
+set boxwidth 0.75 absolute
+set style fill   solid noborder
+set grid nopolar
+set grid noxtics nomxtics ytics nomytics noztics nomztics \
+nox2tics nomx2tics noy2tics nomy2tics nocbtics nomcbtics
+set key invert reverse center bottom horizontal outside autotitle columnheader
+set style histogram rowstacked
+set datafile missing 'NULL'
+set style data histograms
+set xtics border in scale 1,0.5 nomirror <%= rotate %>
+set ytics border in scale 0,0 mirror norotate  offset character 0, 0, 0 autofreq 
+set ztics border in scale 0,0 nomirror norotate  offset character 0, 0, 0 autofreq 
+set cbtics border in scale 0,0 mirror norotate  offset character 0, 0, 0 autofreq 
+set title "<%= view.name %>" 
+#set xlabel "Country of Origin" 
+#set ylabel "(%)" 
+#set yrange [ 0.00000 : * ] noreverse nowriteback  # (currently [:100.000] )
+set datafile separator ";"
+plot <%= use_str %>
+<%= data_str %>
+

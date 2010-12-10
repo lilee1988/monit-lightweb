@@ -5,7 +5,7 @@
   production_url: "monit.chinaccnet.com"
   production_name: "Monit"
   production_title: "Monit监控云"
-  production_version: "内测中"
+  production_version: "测试版"
   cancel: "取消"
   update: "更新"
   create: "确定"
@@ -29,6 +29,78 @@
   contact: "联系我们"
   about: "关于我们"
   feedback: "用户反馈"
+  all: "所有"
+  add: "添加"
+  delete: "删除"
+  edit: "修改"
+  select: "选择"
+  detail: "详细"
+  new: "添加"
+  next: "下一步"
+
+  status:
+    order:
+      waiting: "等待支付"
+      paid: "已支付"
+      cancel: "已取消"
+    device:
+      up: "正常"
+      down: "宕机"
+      pending: "未监控"
+      unreachable: "不可达"
+    host:
+      up: "正常"
+      down: "宕机"
+      pending: "未监控"
+      unreachable: "不可达"
+    site:
+      up: "正常"
+      down: "故障"
+      pending: "未监控"
+    app:
+      up: "正常"
+      down: "故障"
+      pending: "未监控"
+    service:
+      ok: "正常"
+      warning: "警告"
+      critical: "故障"
+      unknown: "未知"
+      pending: "未监控"
+    agent:
+      available: "在线"
+      unavailable: "离线"
+      busy: "繁忙"
+    alert:
+      clear: "清除"
+      critical: "故障"
+      warning: "警告"
+      information: "提醒"
+    notification:
+      device:
+        recovery: "恢复正常"
+        down: "宕机"
+        unreachable: "不可达"
+      host:
+        recovery: "恢复正常"
+        down: "宕机"
+        unreachable: "不可达"
+      site:
+        recovery: "恢复正常"
+        down: "故障"
+      app:
+        recovery: "恢复正常"
+        down: "故障"
+      service:
+        recovery: "恢复正常"
+        warning: "警告"
+        critical: "故障"
+        unknown: "未知错误"
+
+  status_type:
+    transient: "临时"
+    permanent: "永久"
+
 
   date:
     formats:
@@ -137,6 +209,12 @@
   activerecord:
     models:
       user: "用户"
+      host: "主机"
+      device: "网络"
+      service: "服务"
+      app: "应用"
+      site: "网站"
+
     attributes:
       user:
          login: "用户名"
@@ -154,6 +232,132 @@
          password_confirmation: "确认密码"
          role_id: "角色"
          group_id: "管理分组"
+      device:
+        name: "名称"
+        port: "SNMP代理端口"
+        snmp_ver: "SNMP协议版本"
+        community: "SNMP读团体名"
+        status: "状态"
+        addr: "IP/域名"
+        type_id: "类型"
+        manu_id: "型号"
+        summary: "状态信息"
+        service_num: "服务"
+        agent_id: "所属代理"
+        is_support_snmp: "支持SNMP读取"
+        last_check: "上次检测"
+        next_check: "下次检测"
+        check_interval: "检测频度"
+        ctrl_service: "主控服务"
+        notification_times: "重发次数"
+        notification_interval: "重发间隔"
+        first_notification_delay: "延迟"
+        dev_type: "设备类型"
+        dev_vendor: "供应商"
+        group_id: "分组"
+
+      host:
+        name: "名称"
+        port: "SNMP代理端口"
+        snmp_ver: "SNMP协议版本"
+        community: "SNMP读团体名"
+        status: "状态"
+        addr: "IP/域名"
+        type_id: "类型"
+        manu_id: "型号"
+        summary: "状态信息"
+        service_num: "服务"
+        app_num: "应用数量"
+        agent_id: "所属代理"
+        is_support_snmp: "支持SNMP读取"
+        last_check: "上次检测"
+        next_check: "下次检测"
+        check_interval: "检测频度"
+        ctrl_service: "主控服务"
+        notification_times: "重发次数"
+        notification_interval: "重发间隔"
+        first_notification_delay: "延迟"
+        group_id: "分组"
+
+      site:
+        name: "名称"
+        url: "网址"
+        ctrl_service: "主控服务"
+        status: "状态"
+        summary: "状态信息"
+        service_num: "服务"
+        created_at: "创建时间"
+        last_check: "上次检测"
+        next_check: "下次检测"
+        check_interval: "检测频度"
+        notification_times: "重发次数"
+        notification_interval: "重发间隔"
+        first_notification_delay: "延迟"
+        group_id: "分组"
+
+      app:
+        name: "名称"
+        status: "状态"
+        type_id: "类型"
+        host_id: "所属主机"
+        ctrl_service: "主控服务"
+        service_num: "服务"
+        summary: "状态信息"
+        created_at: "创建时间"
+        login_name: "用户名"
+        password: "口令"
+        port: "端口"
+        status_url: "状态页面"
+        last_check: "上次检测"
+        next_check: "下次检测"
+        check_interval: "检测频度"
+        notification_times: "重发次数"
+        notification_interval: "重发间隔"
+        first_notification_delay: "延迟"
+        group_id: "分组"
+
+      service:
+        name: "名称"
+        status: "状态"
+        type_id: "类型"
+        summary: "状态信息"
+        object_type: "所属资源"
+        last_check: "上次检测"
+        next_check: "下次检测"
+        check_interval: "检测频度"
+        threshold_critical: "故障阈值"
+        threshold_warning: "告警阈值"
+        port: "TCP端口"
+        agent_id: "所属代理"
+        notification_times: "重发次数"
+        notification_interval: "重发间隔"
+        first_notification_delay: "延迟"
+        group_id: "分组"
+
+      alert:
+        name: "名称"
+        severity: "级别"
+        status: "状态"
+        status_type: "状态类型"
+        service: "服务名称"
+        occur_count: "发生次数"
+        occured_at: "产生时间"
+        summary: "详细"
+        source_name: "告警源"
+        changed_at: "变更时间"
+        last_check: "上次检测"
+        next_check: "下次检测"
+        last_status: "上次状态"
+
+      notification:
+        created_at: "发送时间"
+        method: "方式"
+        user_id: "用户"
+        title: "标题"
+        content: "内容"
+        summary: "摘要"
+
+
     errors:
       template: # ~ 2.3.5 backward compatible
         header:
