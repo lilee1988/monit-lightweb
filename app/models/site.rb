@@ -66,13 +66,13 @@ class Site < ActiveRecord::Base
   end
 
   def generate_service type
-    service = Service.gen(:type_id => type, :tenant_id => self.tenant_id, :object_id => self.id, :agent_id => self.agent_id)
+    service = Service.gen(:object_type => 3, :type_id => type, :tenant_id => self.tenant_id, :object_id => self.id, :agent_id => self.agent_id)
     service.save
   end
 
   def gen_ctrl
     #http service
-    ctrl = Service.gen(:type_id => 24, :tenant_id => self.tenant_id, :object_id => self.id, :ctrl_state => 1, :agent_id => self.agent_id)  
+    ctrl = Service.gen(:object_type => 3, :type_id => 24, :tenant_id => self.tenant_id, :object_id => self.id, :ctrl_state => 1, :agent_id => self.agent_id)  
     ctrl.save
   end
 
