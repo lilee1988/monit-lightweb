@@ -23,7 +23,7 @@ class ServicesController < ApplicationController
   end
 
   def types
-    if @object.is_a? (Site)
+    if @object.is_a?(Site)
       @service_types = ServiceType.all(:conditions => "object_type = 3")
     else
       @service_types = @object.type.service_types
