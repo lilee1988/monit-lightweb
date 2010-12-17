@@ -3,8 +3,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   include AuthenticatedSystem
   before_filter :login_required
+  before_filter :set_locale
 
   private
+
+  def set_locale
+    I18n.locale = "zh-CN"
+  end
 
   def filter_params options = {}, update = {}
     options = options.dup
