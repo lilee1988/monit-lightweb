@@ -25,11 +25,6 @@ class Site < ActiveRecord::Base
     "site=#{id}"
   end
 
-  #def before_create
-  #  uuid = App.find_by_sql("select uuid() uid from dual")[0].uid
-  #  send("uuid=",uuid)
-  #end
-
   def parse_url
     uri = URI.parse(url)
     self.addr = uri.host
@@ -66,13 +61,13 @@ class Site < ActiveRecord::Base
   end
 
   def generate_service type
-    service = Service.gen(:type_id => type, :tenant_id => self.tenant_id, :object_id => self.id)
+    service = Service.gen(:location => "hz", :type_id => type, :tenant_id => self.tenant_id, :object_id => self.id)
     service.save
   end
 
   def gen_ctrl
     #http service
-    ctrl = Service.gen(:type_id => 24, :tenant_id => self.tenant_id, :object_id => self.id, :ctrl_state => 1)  
+    ctrl = Service.gen(:location => "hz", :type_id => 24, :tenant_id => self.tenant_id, :object_id => self.id, :ctrl_state => 1)  
     ctrl.save
   end
 

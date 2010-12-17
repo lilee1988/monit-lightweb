@@ -32,6 +32,7 @@ class Service < ActiveRecord::Base
   validates_presence_of :tenant_id
   validates_presence_of :object_id
   validates_presence_of :type_id
+  validates_presence_of :location
   validates_inclusion_of :check_interval, :in => CHECK_INTERVALS_A
   #validates_format_of       :name,     :with => /\A[^[:cntrl:]\\<>&]*\z/,  :message => "不能含有\\/<>&", :allow_nil => true
   validates_length_of       :name,     :maximum => 100

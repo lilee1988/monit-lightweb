@@ -63,6 +63,7 @@ class ServicesController < ApplicationController
   def create
     @service = @object.services.new(params[:service])
     @service.tenant_id = current_tenant.id
+    @service.location = "hz"
 
     respond_to do |format|
       if @service.save
