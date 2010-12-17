@@ -1,0 +1,7 @@
+<% @views.each do |view| %>
+  <%=render :partial => "templates/#{view.template}", :locals => {:view => view } %>
+<% end %>
+<p>
+<% url = report_account_url %>
+通知设置：<%= link_to url, url %>
+</p>

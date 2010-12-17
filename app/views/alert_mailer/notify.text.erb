@@ -1,0 +1,3 @@
+<%= @notification.source.name + (@notification.service ? " / " + @notification.service.name : "") %> 于 <%= @notification.changed_at.strftime("%m-%d %H:%M") %> <%= @notification.human_status_name %>。
+<% source = @notification.service ? [@notification.source, @notification.service]: @notification.source %>
+详细： <%= polymorphic_url(source) %>

@@ -1,0 +1,31 @@
+<%= columns_tag :class => "columns64" do %>
+  <%= column_tag do %>
+    <% form_tag(polymorphic_path([@object, Service], :action => "new"), :method => "get", :class => "select-form" ) do %>
+      <% @checked = @service_types.first.id if @service_types.size > 0 %>
+      <h4>选择服务类型：</h4>
+      <% @service_types.each do |type| %>
+        <p>
+        <%= radio_button_tag(:type_id, type.id, type.id == @checked)  + label_tag(:type_id, raw(type.alias + content_tag(:span, type.remark)), :for => ("type_id_" + type.id.to_s))  %>
+        </p>
+      <%end%>
+      <p class="actions">
+      <span class="button-wrap"><%= submit_tag t('next'), :name => nil %></span>
+      </p>
+    <% end %>
+  <% end %>
+  <% column_tag :class => "column-last" do %>
+    <h4>已监控服务：</h4>
+    <ul class="ol">
+      <%
+        services = @object.services
+      %>
+      <% if services.size > 0 %>
+        <% services.each do |service| %>
+          <li><%= link_to service.name, [@object, service] %></li>
+        <% end %>
+      <% else %>
+        <li class="gray">暂无。</li>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>

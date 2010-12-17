@@ -1,0 +1,18 @@
+<p>
+<%= link_to(@notification.source.name, polymorphic_url(@notification.source)) + (@notification.service ? raw(" / ") + link_to(@notification.service.name, polymorphic_url([@notification.source, @notification.service])) : "") %> 于 <%= @notification.changed_at.strftime("%m-%d %H:%M") %> <%= @notification.human_status_name %>
+</p>
+<% if @notification.alert_status == 0 %>
+  <%= @notification.human_last_status_name %>持续了<%= distance_of_time_in_words(@notification.occured_at, @notification.changed_at) %>
+<% end %>
+<p>
+<%=@notification.alert_summary %>
+</p>
+<p>
+<% source = @notification.service ? [@notification.source, @notification.service]: @notification.source %>
+<% url = polymorphic_url(source) %>
+查看详细：<%= link_to url, url %>
+</p>
+<p>
+<% url = polymorphic_url(source, :anchor => "notification", :action => "edit") %>
+通知设置：<%= link_to url, url %>
+</p>
