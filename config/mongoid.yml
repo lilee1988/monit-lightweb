@@ -1,5 +1,6 @@
 defaults: &defaults
   host: localhost
+  database: monit
   # slaves:
   #   - host: slave1.local
   #     port: 27018
@@ -8,17 +9,18 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  database: monit
-  host: s2
+  host: monit.chinaccnet.com
 
 test:
   <<: *defaults
-  database: monit_test
 
 # set these environment variables on your prod server
 production:
-  host: <%= ENV['MONGOID_HOST'] %>
-  port: <%= ENV['MONGOID_PORT'] %>
-  username: <%= ENV['MONGOID_USERNAME'] %>
-  password: <%= ENV['MONGOID_PASSWORD'] %>
-  database: <%= ENV['MONGOID_DATABASE'] %>
+  <<: *defaults
+#  host: <%= ENV['MONGOID_HOST'] %>
+#  port: <%= ENV['MONGOID_PORT'] %>
+#  username: <%= ENV['MONGOID_USERNAME'] %>
+#  password: <%= ENV['MONGOID_PASSWORD'] %>
+#  database: <%= ENV['MONGOID_DATABASE'] %>
+#
+
