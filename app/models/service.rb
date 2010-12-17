@@ -37,7 +37,7 @@ class Service < ActiveRecord::Base
   #validates_format_of       :name,     :with => /\A[^[:cntrl:]\\<>&]*\z/,  :message => "不能含有\\/<>&", :allow_nil => true
   validates_length_of       :name,     :maximum => 100
   #validates_uniqueness_of :name
-  validates_uniqueness_of   :params, :scope => [:object_id, :command, :tenant_id]
+  validates_uniqueness_of   :params, :scope => [:object_id, :command, :tenant_id, :location]
 
   validates_each :params do |record, attr, value|
     error = false
