@@ -37,6 +37,7 @@
   detail: "详细"
   new: "添加"
   next: "下一步"
+  select_type: "选择服务类型"
 
   status:
     order:

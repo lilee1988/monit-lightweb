@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<%=I18n.locale%>" lang="<%=I18n.locale%>">
-  <%=render :partial=>'layouts/head'%>
+  <%= render :partial=>'layouts/head' %>
   <body>
     <div id="doc">
       <!--header-->
@@ -30,7 +30,8 @@
                 <% end %>
                 <%= item.apps :class => "last" + (current_tab?(:apps, :menu) ? " menu-current-last" : "") do %>
                   <h4>
-                    <%= link_to icon_tag("apps") + "应用" + content_tag(:span, "Apache,Mysql,Nginx"), apps_path %>
+                    <%#= link_to icon_tag("apps") + "应用" + content_tag(:span, "Apache,Mysql,Nginx"), apps_path %>
+                    <%= link_to icon_tag("apps") + "应用" + content_tag(:span, "稍后推出"), "javascript:void(alert('应用将对Apache,Mysql,Nginx等应用进行监控。'))" %>
                   </h4>
                   <%= submenu_tag do |subitem| %>
                     <%= subitem.apps_index link_to(icon_tag("submenu") + "应用概述", apps_path) %>

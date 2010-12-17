@@ -55,7 +55,7 @@ class SitesController < ApplicationController
 
     respond_to do |format|
       if @site.save
-        format.html { redirect_to(@site, :notice => @site.name + '创建成功。') }
+        format.html { redirect_to(@site, :notice => @site.name + '创建成功。稍等几分钟，我们会自动对您的网站进行检测。') }
         format.xml  { render :xml => @site, :status => :created, :location => @site }
       else
         format.html { render :action => "new" }

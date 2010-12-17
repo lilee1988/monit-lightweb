@@ -32,7 +32,7 @@ class MetricData
 
     config = self.class.config(options[:start], options[:finish], @interval)
     #data = DB.get(config[:family], @uuid, :start => start.to_s, :finish => finish.to_s, :count => 1000)
-    data = config[:model].where({:dn => @dn, :ts => { "$gt" => start, "$lt" => finish }}).to_a
+    data = config[:model].where({:dn => @dn, :ts => { "$gt" => start, "$lt" => finish }}).asc(:ts).to_a
     data.collect!{|doc| doc.attributes}
 
     set_history data, start, finish, config[:interval]

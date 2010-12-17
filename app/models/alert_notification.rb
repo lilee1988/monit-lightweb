@@ -7,7 +7,7 @@ class AlertNotification < Alert
 
   set_table_name 'alert_notifications'
   belongs_to :user
-  belongs_to :tenant, :include => :operator
+  belongs_to :tenant
 
   def last_status_name
     self.class.status[object_name.to_sym][alert_last_status]

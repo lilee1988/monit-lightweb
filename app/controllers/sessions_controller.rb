@@ -8,8 +8,8 @@ class SessionsController < ApplicationController
   # render new.rhtml
   def new
     current_user.update_attribute(:status, 2) if current_user #Login for invate
-    #redirect_to logged_in? ? root_path : "http://www.chinaccnet.com/login.php?goto_page=http://www.chinaccnet.com/monit.php" and return
-    redirect_to "http://www.chinaccnet.com/login.php?goto_page=http://www.chinaccnet.com/monit.php" unless logged_in?
+    redirect_to logged_in? ? root_path : "http://www.chinaccnet.com/login.php?goto_page=http://www.chinaccnet.com/monit.php" and return
+    #redirect_to "http://www.chinaccnet.com/login.php?goto_page=http://www.chinaccnet.com/monit.php" unless logged_in?
   end
 
   def create

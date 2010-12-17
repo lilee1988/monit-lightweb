@@ -29,6 +29,7 @@ class Service < ActiveRecord::Base
 
 
   validates_presence_of :name
+  validates_presence_of :tenant_id
   validates_presence_of :object_id
   validates_presence_of :type_id
   validates_inclusion_of :check_interval, :in => CHECK_INTERVALS_A
@@ -50,7 +51,6 @@ class Service < ActiveRecord::Base
   #  package = record.tenant.package
   #  record.errors.add attr, "设置太低，该用户套餐不支持，请升级" if package and value.to_i < package.min_check_interval.to_i
   #end
-
 
   before_validation :set_default
   def metric_data

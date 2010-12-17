@@ -20,6 +20,11 @@ module ApplicationHelper
     end
   end
 
+  def add_tag url, options = {}, &block
+    options[:class] = "last"
+    content_tag(:div, content_tag(:span, content_tag(:span, link_to(t("add"), url, options, &block))), :class => "ui-actions actions")
+  end
+
   def icon_status type, status
     icon_tag "#{type}-#{status}", :title => t("status.#{type}.#{status}")
   end
@@ -91,6 +96,17 @@ module ApplicationHelper
     script << "so.write('#{options[:id]}');"
     content_tag('div', options[:help], :id => options[:id]) + javascript_tag(script)
   end
+
+  def filter_params options = {}, update = {}
+    options = options.dup
+    options.delete :sort
+    options.delete :page
+    options.delete :action
+    options.delete :controller
+    options.update update
+    options
+  end
+
 
   private
   # Add variable to swfobject

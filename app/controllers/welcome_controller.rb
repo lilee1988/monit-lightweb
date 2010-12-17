@@ -3,7 +3,8 @@ class WelcomeController < ApplicationController
 
   def index
     @title = "首页"
-    redirect_to home_path and return if current_user
+    redirect_to sites_path and return if current_user
+    #redirect_to home_path and return if current_user
   end
 
   #隐私条款

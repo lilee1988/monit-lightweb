@@ -1,23 +1,23 @@
 <div class="wrap">
-  <% object = @service.object %>
   <%= board_tag :id => "services" do %>
     <%= board_header_tag do %>
       <%= icon_status("service", @service.status_name) %>
-      <%= link_to t(@service.object_name), :controller => @service.object_name + "s", :action => "index" %> /
-      <%=link_to(object.name, object) %> /
-      <%=h @service.name %>
+      <%= link_to t(@object.class.name.downcase), polymorphic_path(@object.class) %> /
+      <%= link_to(@object.name, @object) %> /
+      <%= @service.name %>
     <% end %>
     <%= board_content_tag do %>
       <div class="details">
         <div class="ui-actions">
           <span>
             <span>
-              <%= link_to(icon_tag("edit") + "修改", edit_service_url(@service))%>
-              <%= link_to("通知设置", edit_service_url(@service, :anchor => "notification"))%>
+              <%= link_to(icon_tag("edit") + "修改", polymorphic_path([@object, @service], :action => "edit"))%>
+              <%= link_to("阈值设置", polymorphic_path([@object, @service], :action => "edit", :anchor => "threshold"))%>
+              <%= link_to("通知设置", polymorphic_path([@object, @service], :action => "edit", :anchor => "notification"))%>
               <% if @service.is_ctrl? %>
                 <%= link_to(icon_tag("delete") + "删除", "javascript: void(alert('主控服务不能删除'))", :title => "主控服务不能删除", :class => "disabled last")%>
               <% else %>
-                <%= link_to(icon_tag("delete") + "删除", service_url(@service), :method => :delete, :confirm => "确认删除服务？", :class => "last")%>
+                <%= link_to(icon_tag("delete") + "删除", polymorphic_path([@object, @service]), :method => :delete, :confirm => "确认删除服务？", :class => "last")%>
               <% end %>
             </span>
           </span>
@@ -51,6 +51,19 @@
         <%=format_time @service.last_check %>
         </p>
       </div>
+    <% end %>
+  <% end %>
+  <%= board_tag do %>
+    <%= board_header_tag do %>
+      历史
+    <% end %>
+    <%= board_content_tag do %>
+      <%
+        @service.history_views.each do |view|
+          view.data_url = polymorphic_path([@service.object, @service, view], :format => :csv)
+          concat render(:partial => "templates/#{view.template}", :locals => {:view => view })
+        end
+      %>
     <% end %>
   <% end %>
 </div>

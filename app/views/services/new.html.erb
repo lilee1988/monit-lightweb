@@ -1,5 +1,14 @@
-<h1>New service</h1>
+<div class="wrap">
+  <%= board_tag do %>
+    <%= board_header_tag do %>
+      <%= link_to t(@object.class.name.downcase), polymorphic_path(@object.class) %> /
+      <%=link_to(@object.name, @object) %> /
+      <%= t("new") + t("service") %>
+    <% end %>
+    <%= board_content_tag do %>
+      <%= render :partial => "form" %>
+    <% end %>
+  <% end %>
+</div>
 
-<%= render 'form' %>
 
-<%= link_to 'Back', services_path %>

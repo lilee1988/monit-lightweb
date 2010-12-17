@@ -1,6 +1,8 @@
 class ServicesController < ApplicationController
   # GET /services
   # GET /services.xml
+  before_filter :find_object
+
   def index
     @services = Service.all
 
@@ -13,7 +15,6 @@ class ServicesController < ApplicationController
   # GET /services/1
   # GET /services/1.xml
   def show
-    @service = Service.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -21,12 +22,29 @@ class ServicesController < ApplicationController
     end
   end
 
+  def types
+    if @object.is_a? (Site)
+      @service_types = ServiceType.all(:conditions => "object_type = 3")
+    else
+      @service_types = @object.type.service_types
+    end
+  end
+
   # GET /services/new
   # GET /services/new.xml
   def new
-    @service = Service.new
+    @service = Service.new(:type_id => params[:type_id], :check_interval => 300)
+    type = @service.type
+    unless type
+      redirect_to polymorphic_path([@object, Service], :action => "types") and return
+    end
 
     dictionary
+    @service.object_id = @object.id
+    @service.name = type.default_name
+    @service.threshold_critical = type.threshold_critical
+    @service.threshold_warning = type.threshold_warning
+    @service.check_interval = type.check_interval
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,18 +55,18 @@ class ServicesController < ApplicationController
   # GET /services/1/edit
   def edit
 
-    @service = Service.find(params[:id])
     dictionary
   end
 
   # POST /services
   # POST /services.xml
   def create
-    @service = Service.new(params[:service])
+    @service = @object.services.new(params[:service])
+    @service.tenant_id = current_tenant.id
 
     respond_to do |format|
       if @service.save
-        format.html { redirect_to(@service, :notice => 'Service was successfully created.') }
+        format.html { redirect_to(polymorphic_path([@object, @service]), :notice => "#{@service.name}创建成功。") }
         format.xml  { render :xml => @service, :status => :created, :location => @service }
       else
         dictionary
@@ -61,11 +79,10 @@ class ServicesController < ApplicationController
   # PUT /services/1
   # PUT /services/1.xml
   def update
-    @service = Service.find(params[:id])
-
+    @service.tenant_id = current_tenant.id
     respond_to do |format|
       if @service.update_attributes(params[:service])
-        format.html { redirect_to(@service, :notice => 'Service was successfully updated.') }
+        format.html { redirect_to(polymorphic_path([@object, @service]), :notice => "#{@service.name}更新成功。") }
         format.xml  { head :ok }
       else
         dictionary
@@ -78,11 +95,10 @@ class ServicesController < ApplicationController
   # DELETE /services/1
   # DELETE /services/1.xml
   def destroy
-    @service = Service.find(params[:id])
     @service.destroy
 
     respond_to do |format|
-      format.html { redirect_to(services_url) }
+      format.html { redirect_to(@object) }
       format.xml  { head :ok }
     end
   end
@@ -102,4 +118,17 @@ class ServicesController < ApplicationController
     #@default_check_interval = @service_type.check_interval
   end
 
+  def find_object
+    op = {:conditions => {:tenant_id => current_tenant.id}}
+    @service = Service.find(params[:id], op) unless params[:id].blank?
+    if @service
+      @object = @service.object
+    else
+      @site = Site.find(params[:site_id], op) unless params[:site_id].blank?
+      @app = App.find(params[:app_id], op) unless params[:app_id].blank?
+      @host = Host.find(params[:host_id], op) unless params[:host_id].blank?
+      @object = @site || @app || @host
+    end
+    set_tab(@object.class.name.tableize.to_sym, :menu) if @object
+  end
 end

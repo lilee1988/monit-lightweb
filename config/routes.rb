@@ -2,22 +2,58 @@ Monit::Application.routes.draw do
 
   resources :views
 
-  resources :services do
-    resources :views do
-      member do
-        get :data
+  #resources :services do
+  #  resources :views do
+  #    member do
+  #      get :data
+  #    end
+  #  end
+  #end
+
+  resources :hosts do
+    resources :services do
+      resources :views do
+        member do
+        end
+      end
+      collection do
+        get :types
       end
     end
   end
 
-  resources :apps
+  resources :devices do
+    resources :services do
+      resources :views do
+        member do
+        end
+      end
+      collection do
+        get :types
+      end
+    end
+  end
+
+  resources :apps do
+    resources :services do
+      resources :views do
+        member do
+        end
+      end
+      collection do
+        get :types
+      end
+    end
+  end
 
   resources :sites do
     resources :services do
       resources :views do
         member do
-          get :data
         end
+      end
+      collection do
+        get :types
       end
     end
 

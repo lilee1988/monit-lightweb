@@ -643,7 +643,7 @@ border-bottom: 1px solid #ccc;
 }
 
 .board-header .actions{
-  float: left;
+  float: right;
   margin: -3px 10px 0;
   font-weight: normal;
 }

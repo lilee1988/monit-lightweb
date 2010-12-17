@@ -1,6 +1,8 @@
 <div class="wrap">
   <%= board_tag :id => "sites" do %>
-    <%= board_header_tag "网站" %>
+    <%= board_header_tag do %>
+      <%= t("site") %>
+    <% end %>
     <%= board_content_tag do %>
 
       <div class="filters clearfix">

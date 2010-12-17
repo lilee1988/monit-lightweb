@@ -1,21 +1,42 @@
-<%= form_for(@service) do |f| %>
-  <% if @service.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@service.errors.count, "error") %> prohibited this service from being saved:</h2>
-
-      <ul>
-      <% @service.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+<%= form_for([@object, @service], :builder => OpenStyle::FormBuilder, :html => {:class => "form"}) do |f| %>
+  <%= redirect_tag %>
+  <%= f.hidden_field :type_id %>
+  <%= field_set_tag "基本信息" do %>
+    <%= f.item(:name, :required => true) do %>
+      <%= f.text_field(:name) %>
+      <%= f.help(:name, "") %>
+    <% end %>
+    <%= f.item(:check_interval, :required => true) do %>
+      <%= f.select(:check_interval, @check_intervals, :prompt => "选择采集频") %>
+      <%= f.help(:check_interval, "") %>
+    <% end %>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <% p @service.errors.full_messages %>
+  <% service_params = @service.type.params  %>
+  <% service_params.delete_if { |x| x.param_type != 1 and  x.param_type!=3 } %>
+  <% if @service.errors.on(:params) %>
+    <p class="notice notice-error">
+    服务<%= @service.errors.on(:params) %>
+    </p>
+  <% end %>
+  <% if service_params.size > 0  %>
+    <%= field_set_tag "服务参数", :id=>"param" do %>
+      <% service_params.each do |param| %>
+        <% if param.param_type==1 %>
+          <%= f.item 'params_' + param.name , { :label => param.alias, :required => (param.required == 1) } do %>
+            <%= text_wrap_tag(text_field_tag('service[params]['+ param.name + ']', @service.params_object[param.name.to_sym] )) %>
+            <%= f.help param.help, param.error %>
+          <% end %>
+        <% end %>
+      <%end%>
+    <%end%>
+  <%end%>
+  <%= render :partial => "threshold", :locals => { :f => f } %>
+  <% unless @service.new_record? %>
+    <%= render :partial => "notifications/setting", :locals => {:f => f, :source => "service", :types => ["critical", "warning", "unknown", "recovery"] } %>
+  <% end %>
+  <p class="form-actions">
+  <%= f.submit t(@service.new_record? ? 'create' : 'update') %>
+  </p>
 <% end %>
+
